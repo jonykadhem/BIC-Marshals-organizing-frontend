@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
+import * as eventService from './services/events'
 import Nav from './components/Nav'
 import { Routes, Route, useNavigate } from 'react-router'
 import SignInForm from './pages/authPages/SignIn'
 import Home from './pages/Home'
 import SignUpForm from './pages/authPages/SignUp'
-import eventList from './pages/EventsList'
+import EventList from './pages/EventsList'
 
 
 
@@ -21,6 +22,14 @@ const App = () => {
   const [user, setUser] = useState(getUserFromToken())
   const [events, setEvents] = useState([])
 
+  useEffect(() => {
+    const fatchAllEvents = async () => {
+      const eventsData = await eventService.index()
+      setEvents(eventsData)
+    }
+    if(user) fatchAllEvents
+  }, [user])
+
   return (
     <div>
       <Nav user={user} setUser={setUser} />
@@ -28,7 +37,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         {user ? (
           <>
-          <Route path='/events' element={<eventList />} />
+          <Route path='/events' element={<EventList events={events} setEvents={setEvents} />} />
           
           </>
         ) : (

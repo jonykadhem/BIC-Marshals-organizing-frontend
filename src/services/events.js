@@ -18,3 +18,7 @@ const index = async () => {
         throw error
     }
 }
+
+export {
+    index,
+}
