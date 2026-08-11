@@ -5,6 +5,8 @@ import { Routes, Route, useNavigate } from 'react-router'
 import SignInForm from './pages/authPages/SignIn'
 import Home from './pages/Home'
 import SignUpForm from './pages/authPages/SignUp'
+import eventList from './pages/EventsList'
+
 
 
 const getUserFromToken = () => {
@@ -17,6 +19,7 @@ const App = () => {
   const navigate = useNavigate()
 
   const [user, setUser] = useState(getUserFromToken())
+  const [events, setEvents] = useState([])
 
   return (
     <div>
@@ -25,6 +28,8 @@ const App = () => {
         <Route path='/' element={<Home />} />
         {user ? (
           <>
+          <Route path='/events' element={<eventList />} />
+          
           </>
         ) : (
           <>

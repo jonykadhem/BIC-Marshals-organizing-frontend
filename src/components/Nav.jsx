@@ -7,10 +7,13 @@ const Nav = (props) => {
     }
     return(
         <nav>
-            <Link to={'/'}>Events</Link>{" | "}
+            <Link to={'/'}>Home</Link>{" | "}
             {props.user ? (
                 <>
+                <Link to="/events" onClick={handleSignOut}>Events</Link>
+                {' | '}
                 <Link to="/" onClick={handleSignOut}>Sign Out</Link>
+                
                 </>
             ):(
                 <>
