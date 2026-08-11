@@ -40,7 +40,7 @@ const App = () => {
         {user ? (
           <>
           {(user.role === "orgnizer" || user.role === "admin") && (
-            <Route path='/events/new' element={<CreateEvent />} />
+            <Route path='/events/new' element={<CreateEvent setEvents={setEvents}/>} />
 
           )}
           

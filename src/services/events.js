@@ -39,7 +39,7 @@ const show = async (eventId) => {
 
 const create = async (eventFormData) => {
     try {
-        const res = await fetch(BASE_URL, {
+        const res = await fetch(`${BASE_URL}/new`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -47,7 +47,10 @@ const create = async (eventFormData) => {
             },
             body: JSON.stringify(eventFormData),
         })
+        
         const data = await res.json()
+        console.log("Status:", res.status);
+        console.log("Backend response:", data);
 
         if (!res.ok) {
             throw new Error(data.err || "Failed to create event")

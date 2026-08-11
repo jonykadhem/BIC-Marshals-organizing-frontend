@@ -1,12 +1,12 @@
 import { Link } from "react-router"
 
-const EventList = ({events}) => {
+const EventList = (props) => {
     return (
         <main className="event-list">
             <h1>Events</h1>
             <div className="events-container">
 
-                {events.map((event) => (
+                {props.events.map((event) => (
 
                     <Link key={event._id} to={`/events/${event._id}`} className="event-card">
 
