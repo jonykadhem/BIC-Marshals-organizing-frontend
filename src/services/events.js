@@ -27,7 +27,7 @@ const show = async (eventId) => {
         const data = await res.json()
 
         if (!res.ok) {
-            throw new Error(data.err || "Failed to get events")
+            throw new Error(data.err || "Failed to get event")
         }
 
         return data
@@ -47,14 +47,34 @@ const create = async (eventFormData) => {
             },
             body: JSON.stringify(eventFormData),
         })
-        return res.json()
+        const data = await res.json()
+
+        if (!res.ok) {
+            throw new Error(data.err || "Failed to create event")
+        }
+
+        return data
     } catch (error) {
         console.log(error)
+        throw error
     }
+}
+
+const update = async () => {
+    try {
+        const 
+    } catch (error) {
+        
+    }
+}
+const deleteEvent = async () => {
+
 }
 
 export {
     index,
     show,
-    create
+    create,
+    update,
+    deleteEvent
 }
