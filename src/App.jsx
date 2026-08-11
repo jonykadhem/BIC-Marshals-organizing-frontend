@@ -7,6 +7,8 @@ import SignInForm from './pages/authPages/SignIn'
 import Home from './pages/Home'
 import SignUpForm from './pages/authPages/SignUp'
 import EventList from './pages/EventsList'
+import CreatEvent from './pages/CreatEvent'
+
 
 
 
@@ -37,6 +39,9 @@ const App = () => {
         <Route path='/' element={<Home />} />
         {user ? (
           <>
+          if (user.role !== "orgnizer" && user.role !== "admin") {
+            
+          }
           <Route path='/events' element={<EventList events={events} setEvents={setEvents} />} />
           
           </>

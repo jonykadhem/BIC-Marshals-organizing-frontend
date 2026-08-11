@@ -1,8 +1,5 @@
 import { Link } from "react-router"
 
-
-
-
 const EventList = ({events}) => {
     return (
         <main className="event-list">
