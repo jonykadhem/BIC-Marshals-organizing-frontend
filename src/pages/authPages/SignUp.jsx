@@ -80,6 +80,14 @@ const SignUpForm = (props) => {
                 onChange={handleChange} 
                 placeholder="Enter your license number"/>
 
+                <label htmlFor="phone">Phone</label>
+                <input type="phone" 
+                id="phone" 
+                name="phone" 
+                value={formData.phone} 
+                onChange={handleChange} 
+                placeholder="Enter your Phone Number"/>
+
                 <label htmlFor="sector">Sector</label>
                 <select name="sector" 
                 id="sector"
