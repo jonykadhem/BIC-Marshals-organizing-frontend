@@ -3,15 +3,15 @@ const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/events`
 const index = async () => {
     try {
         const res = await fetch(BASE_URL, {
-            headers:{ Authorization: `Bearer ${localStorage.getItem('token')}` },
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         })
 
         const data = await res.json()
 
-        if(!res.ok){
+        if (!res.ok) {
             throw new Error(data.err || "Failed to get events")
         }
-        
+
         return data
     } catch (error) {
         console.log(error)
@@ -19,6 +19,42 @@ const index = async () => {
     }
 }
 
+const show = async (eventId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${eventId}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        })
+        const data = await res.json()
+
+        if (!res.ok) {
+            throw new Error(data.err || "Failed to get events")
+        }
+
+        return data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+const create = async (eventFormData) => {
+    try {
+        const res = await fetch(BASE_URL, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(eventFormData),
+        })
+        return res.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
     index,
+    show,
+    create
 }

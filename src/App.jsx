@@ -23,11 +23,11 @@ const App = () => {
   const [events, setEvents] = useState([])
 
   useEffect(() => {
-    const fatchAllEvents = async () => {
+    const fetchAllEvents = async () => {
       const eventsData = await eventService.index()
       setEvents(eventsData)
     }
-    if(user) fatchAllEvents
+    if(user) fetchAllEvents()
   }, [user])
 
   return (
