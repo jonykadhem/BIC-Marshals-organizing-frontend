@@ -65,7 +65,7 @@ const create = async (eventFormData) => {
 
 const update = async (eventId, eventFormData) => {
     try {
-        const res = await fetch(`${BASE_URL}/${eventId}`, {
+        const res = await fetch(`${BASE_URL}/${eventId}/edit`, {
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,

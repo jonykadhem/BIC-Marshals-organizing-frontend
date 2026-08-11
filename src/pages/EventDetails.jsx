@@ -46,7 +46,7 @@ const EventDetails = ({ user }) => {
             <p>{event.description}</p>
 
             <p>
-                <strong>Date:</strong>{" "}
+                <strong>Event Date:</strong>{" "}
                 {new Date(event.eventDate).toLocaleDateString()}
             </p>
 
@@ -57,6 +57,9 @@ const EventDetails = ({ user }) => {
 
             <p>
                 <strong>Status:</strong> {event.status}
+            </p>
+            <p>
+                <strong>Registration Deadline:</strong> {new Date(event.registrationDeadline).toLocaleDateString()}
             </p>
 
             <p> <strong>Created By:</strong> {event.createdBy.fullName}</p>
