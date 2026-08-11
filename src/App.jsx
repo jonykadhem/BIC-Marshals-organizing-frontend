@@ -9,7 +9,7 @@ import SignUpForm from './pages/authPages/SignUp'
 import EventList from './pages/EventsList'
 import CreateEvent from './pages/CreateEvent'
 import EventDetails from './pages/EventDetails'
-
+import EditEvent from "./pages/EditEvent"
 
 
 
@@ -47,6 +47,7 @@ const App = () => {
           
           <Route path='/events' element={<EventList events={events} setEvents={setEvents} />} />
           <Route path='/events/:eventId' element={<EventDetails events={events} user={user}/>} />
+          <Route path='/events/:eventId/edit' element={<EditEvent events={events} user={user}/>} />
           
           </>
         ) : (

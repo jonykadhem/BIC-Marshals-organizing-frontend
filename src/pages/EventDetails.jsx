@@ -66,9 +66,15 @@ const EventDetails = ({ user }) => {
             {(user.role === "admin" ||
                 (user.role === "organizer" &&
                     event.createdBy === user._id)) && (
-                    <button onClick={handleDelete}>
-                        Delete Event
-                    </button>
+                    <>
+                        <button onClick={handleDelete}>
+                            Delete Event
+                        </button>
+                        <button type="button"
+                            onClick={() => navigate(`/events/${eventId}/edit`)}>
+                            Edit Event
+                        </button>
+                    </>
                 )}
         </div>
     )
