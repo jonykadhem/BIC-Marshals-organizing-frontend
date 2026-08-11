@@ -39,7 +39,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         {user ? (
           <>
-          {(user.role === "orgnizer" && user.role === "admin") && (
+          {(user.role === "orgnizer" || user.role === "admin") && (
             <Route path='/events/new' element={<CreateEvent />} />
 
           )}

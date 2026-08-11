@@ -5,20 +5,25 @@ const Nav = (props) => {
         localStorage.removeItem('token')
         props.setUser(null)
     }
-    return(
+    return (
         <nav>
             <Link to={'/'}>Home</Link>{" | "}
             {props.user ? (
                 <>
-                <Link to="/events" >Events</Link>
-                {' | '}
-                <Link to="/" onClick={handleSignOut}>Sign Out</Link>
-                
+                    {(props.user.role === "orgnizer" || props.user.role === "admin") && (
+                        <Link to={"/events/new"}>Creat Event</Link>
+
+                    )}
+                    {' | '}
+                    <Link to="/events" >Events</Link>
+                    {' | '}
+                    <Link to="/" onClick={handleSignOut}>Sign Out</Link>
+
                 </>
-            ):(
+            ) : (
                 <>
-                <Link to={'/sign-in'}>Sign In</Link>{' | '}
-                <Link to={'/sign-up'}>Sign Up</Link>
+                    <Link to={'/sign-in'}>Sign In</Link>{' | '}
+                    <Link to={'/sign-up'}>Sign Up</Link>
                 </>
             )}
         </nav>
