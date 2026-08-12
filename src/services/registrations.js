@@ -25,9 +25,9 @@ const registerForEvent = async (eventId, positions) => {
     }
 }
 
-const myRegistration = async () =>{
+const myRegistration = async () => {
     try {
-         const res = await fetch(`${BASE_URL}/events/my-events`, {
+        const res = await fetch(`${BASE_URL}/events/my-events`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -96,9 +96,66 @@ const getMyRegistrationForEvent = async (eventId) => {
     }
 }
 
+
+const getEventRegistrations = async (eventId) => {
+    try {
+        const res = await fetch(
+            `${BASE_URL}/event/${eventId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        )
+
+        const data = await res.json()
+
+        if (!res.ok) {
+            throw new Error(
+                data.err || "Failed to get event registrations"
+            )
+        }
+
+        return data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+const assignPost = async (registrationId, assignPost) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${registrationId}/assign`, {
+        method: 'PUT',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            assignedPost: assignedPost,
+        }),
+    
+    })
+
+    const data = await res.json()
+
+    if(!res.ok){
+        throw new Error(
+                data.err || "Failed to assign post"
+            )
+    }
+    return data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
 export {
     registerForEvent,
     myRegistration,
     cancelRegistration,
-    getMyRegistrationForEvent
+    getMyRegistrationForEvent,
+    getEventRegistrations,
+    assignPost
 }
