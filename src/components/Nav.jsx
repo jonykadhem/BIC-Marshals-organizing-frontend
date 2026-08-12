@@ -10,7 +10,7 @@ const Nav = (props) => {
             <Link to={'/'}>Home</Link>{" | "}
             {props.user ? (
                 <>
-                    {(props.user.role === "orgnizer" || props.user.role === "admin") && (
+                    {(props.user.role === "organizer" || props.user.role === "admin") && (
                         <Link to={"/events/new"}>Creat Event</Link>
 
                     )}
@@ -19,14 +19,22 @@ const Nav = (props) => {
                     {' | '}
                     <Link to="/events/my-events" >My Events</Link>
                     {' | '}
-                    <Link to="/" onClick={handleSignOut}>Sign Out</Link>
-                    
+                    <Link to="/" onClick={handleSignOut}>Sign Out</Link>{' | '}
+
 
                 </>
             ) : (
                 <>
                     <Link to={'/sign-in'}>Sign In</Link>{' | '}
                     <Link to={'/sign-up'}>Sign Up</Link>
+                </>
+            )}
+            {props.user && props.user.role === "admin" && (
+                <>
+                    <Link to="/admin">Admin Dashboard</Link>
+                    {" | "}
+                    <Link to="/admin/users">Manage Users</Link>
+                    
                 </>
             )}
         </nav>
