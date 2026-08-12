@@ -1,11 +1,15 @@
 import { Link } from "react-router"
 
 const EventList = (props) => {
+    console.log(!props.event);
+    
+    if (!props.events) return (<p>Loading...</p>)
+    
+
     return (
         <main className="event-list">
             <h1>Events</h1>
             <div className="events-container">
-
                 {props.events.map((event) => (
 
                     <Link key={event._id} to={`/events/${event._id}`} className="event-card">

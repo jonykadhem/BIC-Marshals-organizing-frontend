@@ -45,22 +45,25 @@ const EditEvent = (props) => {
 
     const handleChange = (event) => {
         setMessage("")
-
-        setFormData({ ...formData, [event.target.name]: event.target.value, })
+        setFormData({ ...formData, [event.target.name]: event.target.value })
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
 
         try {
-            await eventService.update(
+           const updatedEvent = await eventService.update(
                 eventId,
                 {
                     ...formData,
                     maxMarshals: Number(formData.maxMarshals),
                 }
-            );
+            )
 
+            const updatedEventList = props.events.map((event)=> {
+                return eventId === event._id ? updatedEvent : event
+            })
+            setFormData(updatedEventList)
             navigate(`/events/${eventId}`)
 
         } catch (error) {
@@ -90,7 +93,6 @@ const EditEvent = (props) => {
                     name="title"
                     value={formData.title}
                     onChange={handleChange}
-
                     required
                 />
 

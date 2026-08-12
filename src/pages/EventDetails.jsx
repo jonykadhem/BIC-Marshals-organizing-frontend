@@ -3,7 +3,7 @@ import * as eventService from "../services/events"
 import { useState, useEffect } from "react"
 
 
-const EventDetails = ({ user }) => {
+const EventDetails = (props) => {
     const { eventId } = useParams()
     const navigate = useNavigate()
 
@@ -28,11 +28,13 @@ const EventDetails = ({ user }) => {
         if (!confirmed) return
 
         try {
-            await eventService.deleteEvent(eventId)
+            const deletedEvent = await eventService.deleteEvent(eventId)
+            setEvent(props.events.filter((event) => event._id !== eventId))
 
             navigate("/events")
         } catch (error) {
-            setMessage(error.message)
+            // setMessage(error.message)
+            console.log(error)
         }
     }
 
@@ -66,9 +68,9 @@ const EventDetails = ({ user }) => {
 
             {message && <p>{message}</p>}
 
-            {(user.role === "admin" ||
-                (user.role === "organizer" &&
-                    event.createdBy === user._id)) && (
+            {(props.user.role === "admin" ||
+                (props.user.role === "organizer" &&
+                    event.createdBy === props.user._id)) && (
                     <>
                         <button onClick={handleDelete}>
                             Delete Event

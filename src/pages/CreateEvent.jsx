@@ -27,8 +27,7 @@ const CreateEvent = (props) => {
         event.preventDefault()
 
         try {
-            const newEvent = await eventService.create(formData)
-            props.setEvents(newEvent)
+        props.handleAddEvent(formData)
             setFormData(initalState)
             navigate('/events')
         } catch (error) {

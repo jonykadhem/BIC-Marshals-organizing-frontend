@@ -21,7 +21,6 @@ const getUserFromToken = () => {
 
 const App = () => {
   const navigate = useNavigate()
-
   const [user, setUser] = useState(getUserFromToken())
   const [events, setEvents] = useState([])
 
@@ -33,6 +32,12 @@ const App = () => {
     if(user) fetchAllEvents()
   }, [user])
 
+  const handleAddEvent = async (formData) => {
+             const newEvent = await eventService.create(formData)
+             const updatedEvents = [newEvent, ...events]
+              setEvents(updatedEvents)
+  }
+
   return (
     <div>
       <Nav user={user} setUser={setUser} />
@@ -41,11 +46,11 @@ const App = () => {
         {user ? (
           <>
           {(user.role === "orgnizer" || user.role === "admin") && (
-            <Route path='/events/new' element={<CreateEvent setEvents={setEvents}/>} />
+            <Route path='/events/new' element={<CreateEvent setEvents={setEvents} handleAddEvent={handleAddEvent}/>} />
 
           )}
           
-          <Route path='/events' element={<EventList events={events} setEvents={setEvents} />} />
+          <Route path='/events' element={<EventList events={events}  />} />
           <Route path='/events/:eventId' element={<EventDetails events={events} user={user}/>} />
           <Route path='/events/:eventId/edit' element={<EditEvent events={events} user={user} setEvents={setEvents}/>} />
           
