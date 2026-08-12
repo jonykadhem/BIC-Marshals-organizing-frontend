@@ -123,7 +123,7 @@ const getEventRegistrations = async (eventId) => {
     }
 }
 
-const assignPost = async (registrationId, assignPost) => {
+const assignPost = async (registrationId, assignedPost) => {
     try {
         const res = await fetch(`${BASE_URL}/events/${registrationId}/assign`, {
         method: 'PUT',

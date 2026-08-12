@@ -4,11 +4,14 @@ import * as registrationService from "../services/registrations"
 
 const EventRegistrations = () => {
 
-    const {eventId} = useParams()
+    const { eventId } = useParams()
     const navigate = useNavigate()
 
     const [registrations, setRegistrations] = useState([])
+    const [selectedPositions, setSelectedPositions] = useState({})
+    const [assignedPosts, setAssignedPosts] = useState({})
     const [message, setMessage] = useState('')
+    
 
     useEffect(() => {
         const fetchRegistrations = async () => {
@@ -21,9 +24,57 @@ const EventRegistrations = () => {
             }
         }
         fetchRegistrations()
-    },[eventId])
+    }, [eventId])
 
-    return(
+    const handlePositionChange = (registrationId, position) => {
+        setSelectedPositions({ ...selectedPositions, [registrationId]: position })
+    }
+
+    const handlePostChange = (registrationId, value) => {
+        setAssignedPosts({
+            ...assignedPosts,
+            [registrationId]: value
+        })
+    }
+
+
+    const handleAssignPost = async (registrationId) => {
+        const position = selectedPositions[registrationId]
+        const post = assignedPosts[registrationId]
+
+        if (!position) {
+            setMessage("Please select a position.")
+            return
+        }
+
+        if (!post) {
+            setMessage("Please enter the assigned post.")
+            return
+        }
+
+        try {
+            const updatedRegistration =
+                await registrationService.assignPost(
+                    registrationId,
+                    `${position} - ${post}`
+                )
+
+            setRegistrations(
+                registrations.map((registration) =>
+                    registration._id === registrationId
+                        ? updatedRegistration
+                        : registration
+                )
+            )
+
+            setMessage("Post assigned successfully.")
+
+        } catch (error) {
+            setMessage(error.message)
+        }
+    }
+
+    return (
         <main>
 
             <button onClick={() => navigate(`/events/${eventId}`)}>
@@ -69,6 +120,42 @@ const EventRegistrations = () => {
                                 {registration.assignedPost ||
                                     "Not assigned"}
                             </p>
+                            <div>
+                                <label >Assign Position</label>
+                                <select value={selectedPositions[registration._id] || ""}
+                                    onChange={(e) => handlePositionChange(registration._id, e.target.value)}
+                                >
+                                    <option value="">
+                                        Select Position
+                                    </option>
+
+                                    {registration.positions.map((position) => (
+                                        <option
+                                            key={position}
+                                            value={position}
+                                        >
+                                            {position}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label>Assign Post:</label>
+                                <input
+                                    type="text"
+                                    placeholder="e.g. Sector 4 - Post 12"
+                                    value={assignedPosts[registration._id] || ""}
+                                    onChange={(e) =>
+                                        handlePostChange(
+                                            registration._id,
+                                            e.target.value
+                                        )
+                                    }
+                                />
+                            </div>
+                            <button onClick={() => handleAssignPost(registration._id)} >
+                                Assign Post
+                            </button>
 
                         </div>
                     ))}

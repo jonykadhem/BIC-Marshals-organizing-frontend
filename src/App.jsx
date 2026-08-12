@@ -51,6 +51,7 @@ const App = () => {
             <>
             <Route path='/events/new' element={<CreateEvent setEvents={setEvents} handleAddEvent={handleAddEvent}/>} />
             <Route path='/events/:eventId/registrations' element={<EventRegistrations />} />
+            <Route path='/events/events/:registrationId/assign' element={<EventRegistrations />} />
 
             </>
           )}
