@@ -30,11 +30,16 @@ const App = () => {
 
   useEffect(() => {
     const fetchAllEvents = async () => {
-      const eventsData = await eventService.index()
-      setEvents(eventsData)
+        try {
+            const eventsData = await eventService.index()
+            setEvents(eventsData)
+        } catch (error) {
+            console.log(error)
+        }
     }
-    if (user) fetchAllEvents()
-  }, [user])
+
+    fetchAllEvents()
+}, [])
 
   const handleAddEvent = async (formData) => {
     const newEvent = await eventService.create(formData)
@@ -46,7 +51,7 @@ const App = () => {
     <div>
       <Nav user={user} setUser={setUser} />
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home events={events} user={user}/>} />
         {user ? (
           <>
             {(user.role === "organizer" || user.role === "admin") && (
