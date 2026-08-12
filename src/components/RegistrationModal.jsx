@@ -132,3 +132,5 @@ const RegistrationModal = ({ event, onClose, onRegistered }) => {
         </div>
     )
 }
+
+export default RegistrationModal

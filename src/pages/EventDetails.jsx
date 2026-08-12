@@ -1,11 +1,14 @@
 import { useParams, useNavigate } from "react-router"
 import * as eventService from "../services/events"
 import { useState, useEffect } from "react"
-
+import RegistrationModal from '../components/RegistrationModal'
 
 const EventDetails = (props) => {
     const { eventId } = useParams()
     const navigate = useNavigate()
+
+    const [showRegistration, setShowRegistration] = useState(false)
+    const [registration, setRegistration] = useState(null)
 
     const [event, setEvent] = useState(null)
     const [message, setmessage] = useState('')
@@ -66,11 +69,13 @@ const EventDetails = (props) => {
 
             <p> <strong>Created By:</strong> {event.createdBy.fullName}</p>
 
+
+
             {message && <p>{message}</p>}
 
             {(props.user.role === "admin" ||
                 (props.user.role === "organizer" &&
-                    event.createdBy === props.user._id)) && (
+                    event.createdBy._id === props.user._id)) && (
                     <>
                         <button onClick={handleDelete}>
                             Delete Event
@@ -81,7 +86,13 @@ const EventDetails = (props) => {
                         </button>
                     </>
                 )}
+            <button onClick={() => setShowRegistration(true)}>Register for Event</button>
+            {showRegistration && (
+                <RegistrationModal event={event} onClose={() => setShowRegistration(false)}
+                    onRegistered={(newRegistration) => { setRegistration(newRegistration)}} />
+                )}
         </div>
+
     )
 }
 
