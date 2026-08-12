@@ -83,6 +83,10 @@ const EventDetails = (props) => {
                 <strong>Maximum Marshals:</strong>{" "}
                 {event.maxMarshals}
             </p>
+            <p>
+                <strong>Registered Marshals:</strong>{" "}
+                {event.registrationCount} / {event.maxMarshals}
+            </p>
 
             <p>
                 <strong>Status:</strong> {event.status}
@@ -136,12 +140,16 @@ const EventDetails = (props) => {
                         <button onClick={() => navigate(`/events/${eventId}/registrations`)}>Manage Registrations</button>
                     </>
                 )}
-            {!registration || registration.status === "Cancelled" ? (
+            {event.registrationCount >= event.maxMarshals ? (
+                <button disabled>
+                    Event Full
+                </button>
+            ) : registration && registration.status !== "Cancelled" ? (
+                <p>✓ You are registered for this event</p>
+            ) : (
                 <button onClick={() => setShowRegistration(true)}>
                     Register for Event
                 </button>
-            ) : (
-                <p>✓ You are registered for this event</p>
             )}
             {showRegistration && (
                 <RegistrationModal event={event} onClose={() => setShowRegistration(false)}
