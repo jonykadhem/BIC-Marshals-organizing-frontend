@@ -6,37 +6,106 @@ const Nav = (props) => {
         props.setUser(null)
     }
     return (
-        <nav>
-            <Link to={'/'}>Home</Link>{" | "}
-            {props.user ? (
-                <>
-                    {(props.user.role === "organizer" || props.user.role === "admin") && (
-                        <Link to={"/events/new"}>Creat Event</Link>
+        <nav className="navbar">
 
+            <div className="navbar-container">
+
+                {/* Logo */}
+                <Link to="/" className="navbar-logo">
+                    <span className="logo-bic">BIC</span>
+                    <span className="logo-marshals">MARSHALS</span>
+                </Link>
+
+
+                {/* Navigation */}
+                <div className="navbar-links">
+
+                    <Link to="/" className="nav-link">
+                        Home
+                    </Link>
+
+
+                    {props.user ? (
+                        <>
+
+                            <Link
+                                to="/events"
+                                className="nav-link"
+                            >
+                                Events
+                            </Link>
+
+
+                            <Link
+                                to="/events/my-events"
+                                className="nav-link"
+                            >
+                                My Events
+                            </Link>
+
+
+                            {(props.user.role === "organizer" ||
+                                props.user.role === "admin") && (
+                                    <Link
+                                        to="/events/new"
+                                        className="nav-link"
+                                    >
+                                        Create Event
+                                    </Link>
+                                )}
+
+
+                            {props.user.role === "admin" && (
+                                <>
+                                    <Link
+                                        to="/admin"
+                                        className="nav-link"
+                                    >
+                                        Admin Dashboard
+                                    </Link>
+
+                                    <Link
+                                        to="/admin/users"
+                                        className="nav-link"
+                                    >
+                                        Manage Users
+                                    </Link>
+                                </>
+                            )}
+
+
+                            <button
+                                className="nav-signout"
+                                onClick={handleSignOut}
+                            >
+                                Sign Out
+                            </button>
+
+                        </>
+                    ) : (
+                        <>
+
+                            <Link
+                                to="/sign-in"
+                                className="nav-link"
+                            >
+                                Sign In
+                            </Link>
+
+                            <Link
+                                to="/sign-up"
+                                className="nav-signup"
+                            >
+                                Sign Up
+                            </Link>
+
+                        </>
                     )}
-                    {' | '}
-                    <Link to="/events" >Events</Link>
-                    {' | '}
-                    <Link to="/events/my-events" >My Events</Link>
-                    {' | '}
-                    <Link to="/" onClick={handleSignOut}>Sign Out</Link>{' | '}
 
+                </div>
 
-                </>
-            ) : (
-                <>
-                    <Link to={'/sign-in'}>Sign In</Link>{' | '}
-                    <Link to={'/sign-up'}>Sign Up</Link>
-                </>
-            )}
-            {props.user && props.user.role === "admin" && (
-                <>
-                    <Link to="/admin">Admin Dashboard</Link>
-                    {" | "}
-                    <Link to="/admin/users">Manage Users</Link>
-                    
-                </>
-            )}
+            </div>
+
         </nav>
     )
 }

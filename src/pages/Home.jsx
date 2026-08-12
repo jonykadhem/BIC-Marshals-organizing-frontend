@@ -7,232 +7,396 @@ const Home = ({ events, user }) => {
         .slice(0, 3)
 
     return (
-        <main>
+        <main className="home-page">
 
             {/* Hero */}
-            <section className="hero">
+            <section className="hero-section">
 
-                <h1>
-                    BIC Marshals
-                </h1>
+                <div className="hero-content">
 
-                <h2>
-                    Motorsport Marshal Management System
-                </h2>
+                    <span className="hero-badge">
+                        BIC MARSHAL MANAGEMENT
+                    </span>
 
-                <p>
-                    Find events, register for marshal positions,
-                    and manage your assignments.
-                </p>
+                    <h1>
+                        BIC Marshals
+                    </h1>
 
-                {user ? (
-                    <>
-                        <p>
-                            Welcome, {user.fullName} 👋
-                        </p>
+                    <h2>
+                        Motorsport Marshal Management System
+                    </h2>
 
-                        <Link to="/events">
-                            Browse Events
-                        </Link>
-                    </>
-                ) : (
-                    <div className="auth-buttons">
+                    <p className="hero-description">
+                        Find events, register for marshal positions,
+                        and manage your assignments all in one place.
+                    </p>
 
-                        <Link to="/sign-in">
-                            Sign In
-                        </Link>
+                    {user ? (
+                        <div className="hero-user">
 
-                        <Link to="/sign-up">
-                            Sign Up
-                        </Link>
+                            <p>
+                                Welcome, <strong>{user.fullName}</strong> 👋
+                            </p>
 
-                    </div>
-                )}
+                            <Link
+                                className="btn btn-primary"
+                                to="/events"
+                            >
+                                Browse Events
+                            </Link>
+
+                        </div>
+                    ) : (
+                        <div className="auth-buttons">
+
+                            <Link
+                                className="btn btn-primary"
+                                to="/sign-in"
+                            >
+                                Sign In
+                            </Link>
+
+                            <Link
+                                className="btn btn-outline"
+                                to="/sign-up"
+                            >
+                                Sign Up
+                            </Link>
+
+                        </div>
+                    )}
+
+                </div>
 
             </section>
 
 
             {/* Upcoming Events */}
-            <section>
+            <section className="home-section events-section">
 
-                <h2>Upcoming Events</h2>
+                <div className="section-header">
+
+                    <div>
+                        <span className="section-label">
+                            DON'T MISS OUT
+                        </span>
+
+                        <h2>
+                            Upcoming Events
+                        </h2>
+                    </div>
+
+                    <Link
+                        className="view-all-link"
+                        to="/events"
+                    >
+                        View All Events →
+                    </Link>
+
+                </div>
+
 
                 {upcomingEvents.length === 0 ? (
-                    <p>No upcoming events.</p>
+
+                    <div className="empty-state">
+                        <h3>No upcoming events</h3>
+
+                        <p>
+                            Check back later for new events.
+                        </p>
+                    </div>
+
                 ) : (
 
                     <div className="event-list">
 
                         {upcomingEvents.map(event => (
 
-                            <div
+                            <article
                                 className="event-card"
                                 key={event._id}
                             >
+
+                                <div className="event-card-header">
+
+                                    <span className="event-status">
+                                        {event.status}
+                                    </span>
+
+                                </div>
 
                                 <h3>
                                     {event.title}
                                 </h3>
 
-                                <p>
-                                    <strong>Date:</strong>{" "}
-                                    {new Date(
-                                        event.eventDate
-                                    ).toLocaleDateString()}
-                                </p>
+                                <div className="event-info">
 
-                                <p>
-                                    <strong>Location:</strong>{" "}
-                                    {event.location}
-                                </p>
+                                    <p>
+                                        <span className="info-label">
+                                            Date
+                                        </span>
 
-                                <p>
-                                    <strong>Marshals:</strong>{" "}
-                                    {event.registrationCount || 0}
-                                    {" / "}
-                                    {event.maxMarshals}
-                                </p>
+                                        {new Date(
+                                            event.eventDate
+                                        ).toLocaleDateString()}
+                                    </p>
+
+                                    <p>
+                                        <span className="info-label">
+                                            Location
+                                        </span>
+
+                                        {event.location}
+                                    </p>
+
+                                    <p>
+                                        <span className="info-label">
+                                            Marshals
+                                        </span>
+
+                                        {event.registrationCount || 0}
+                                        {" / "}
+                                        {event.maxMarshals}
+                                    </p>
+
+                                </div>
 
                                 <Link
+                                    className="event-card-link"
                                     to={`/events/${event._id}`}
                                 >
                                     View Event
+                                    <span>→</span>
                                 </Link>
 
-                            </div>
+                            </article>
 
                         ))}
 
                     </div>
-                )}
 
-                <div>
-                    <Link to="/events">
-                        View All Events
-                    </Link>
-                </div>
+                )}
 
             </section>
 
 
             {/* Role Section */}
             {user && (
-                <section>
+                <section className="home-section quick-actions-section">
 
-                    <h2>Quick Actions</h2>
+                    <div className="section-header">
 
-                    {/* Marshal */}
-                    {user.role === "marshal" && (
                         <div>
+                            <span className="section-label">
+                                YOUR ACCOUNT
+                            </span>
 
-                            <h3>Marshal</h3>
-
-                            <p>
-                                Find events, register for
-                                positions and view your assignments.
-                            </p>
-
-                            <Link to="/events">
-                                Browse Events
-                            </Link>
-
-                            {" "}
-
-                            <Link to="/my-events">
-                                My Events
-                            </Link>
-
+                            <h2>
+                                Quick Actions
+                            </h2>
                         </div>
-                    )}
+
+                    </div>
 
 
-                    {/* Organizer */}
-                    {user.role === "organizer" && (
-                        <div>
+                    <div className="quick-actions-grid">
 
-                            <h3>Organizer</h3>
+                        {/* Marshal */}
+                        {user.role === "marshal" && (
+                            <div className="action-card">
 
-                            <p>
-                                Create and manage your events
-                                and marshal assignments.
-                            </p>
+                                <div className="action-icon">
+                                    M
+                                </div>
 
-                            <Link to="/events/new">
-                                Create Event
-                            </Link>
+                                <h3>
+                                    Marshal
+                                </h3>
 
-                            {" "}
+                                <p>
+                                    Find events, register for positions
+                                    and view your assignments.
+                                </p>
 
-                            <Link to="/events">
-                                My Events
-                            </Link>
+                                <div className="action-links">
 
-                        </div>
-                    )}
+                                    <Link
+                                        className="btn btn-primary"
+                                        to="/events"
+                                    >
+                                        Browse Events
+                                    </Link>
+
+                                    <Link
+                                        className="btn btn-secondary"
+                                        to="/my-events"
+                                    >
+                                        My Events
+                                    </Link>
+
+                                </div>
+
+                            </div>
+                        )}
 
 
-                    {/* Admin */}
-                    {user.role === "admin" && (
-                        <div>
+                        {/* Organizer */}
+                        {user.role === "organizer" && (
+                            <div className="action-card">
 
-                            <h3>Administrator</h3>
+                                <div className="action-icon">
+                                    O
+                                </div>
 
-                            <p>
-                                Manage events, users and
-                                system settings.
-                            </p>
+                                <h3>
+                                    Organizer
+                                </h3>
 
-                            <Link to="/admin">
-                                Admin Dashboard
-                            </Link>
+                                <p>
+                                    Create and manage your events
+                                    and marshal assignments.
+                                </p>
 
-                            {" "}
+                                <div className="action-links">
 
-                            <Link to="/admin/users">
-                                Manage Users
-                            </Link>
+                                    <Link
+                                        className="btn btn-primary"
+                                        to="/events/new"
+                                    >
+                                        Create Event
+                                    </Link>
 
-                        </div>
-                    )}
+                                    <Link
+                                        className="btn btn-secondary"
+                                        to="/events"
+                                    >
+                                        My Events
+                                    </Link>
+
+                                </div>
+
+                            </div>
+                        )}
+
+
+                        {/* Admin */}
+                        {user.role === "admin" && (
+                            <div className="action-card">
+
+                                <div className="action-icon">
+                                    A
+                                </div>
+
+                                <h3>
+                                    Administrator
+                                </h3>
+
+                                <p>
+                                    Manage events, users and
+                                    system settings.
+                                </p>
+
+                                <div className="action-links">
+
+                                    <Link
+                                        className="btn btn-primary"
+                                        to="/admin"
+                                    >
+                                        Admin Dashboard
+                                    </Link>
+
+                                    <Link
+                                        className="btn btn-secondary"
+                                        to="/admin/users"
+                                    >
+                                        Manage Users
+                                    </Link>
+
+                                </div>
+
+                            </div>
+                        )}
+
+                    </div>
 
                 </section>
             )}
 
 
             {/* How It Works */}
-            <section>
+            <section className="home-section how-section">
 
-                <h2>How It Works</h2>
+                <div className="section-header centered">
 
-                <div>
+                    <span className="section-label">
+                        SIMPLE PROCESS
+                    </span>
 
-                    <div>
-                        <h3>1. Find an Event</h3>
+                    <h2>
+                        How It Works
+                    </h2>
+
+                    <p>
+                        Get ready for your next motorsport event
+                        in three simple steps.
+                    </p>
+
+                </div>
+
+
+                <div className="steps-grid">
+
+                    <div className="step-card">
+
+                        <span className="step-number">
+                            01
+                        </span>
+
+                        <h3>
+                            Find an Event
+                        </h3>
 
                         <p>
-                            Browse upcoming BIC events
-                            and find one you want to participate in.
+                            Browse upcoming BIC events and find
+                            one you want to participate in.
                         </p>
+
                     </div>
 
 
-                    <div>
-                        <h3>2. Register</h3>
+                    <div className="step-card">
+
+                        <span className="step-number">
+                            02
+                        </span>
+
+                        <h3>
+                            Register
+                        </h3>
 
                         <p>
-                            Select the marshal positions
-                            you are able to work.
+                            Select the marshal positions you
+                            are able to work.
                         </p>
+
                     </div>
 
 
-                    <div>
-                        <h3>3. Get Assigned</h3>
+                    <div className="step-card">
+
+                        <span className="step-number">
+                            03
+                        </span>
+
+                        <h3>
+                            Get Assigned
+                        </h3>
 
                         <p>
-                            The organizer assigns your
-                            sector post for the event.
+                            The organizer assigns your sector
+                            post for the event.
                         </p>
+
                     </div>
 
                 </div>
@@ -241,34 +405,52 @@ const Home = ({ events, user }) => {
 
 
             {/* Bottom CTA */}
-            <section>
+            <section className="cta-section">
 
-                {!user ? (
-                    <>
-                        <h2>
-                            Ready to join the next event?
-                        </h2>
+                <div className="cta-content">
 
-                        <p>
-                            Sign in or create an account
-                            to start registering.
-                        </p>
+                    {!user ? (
+                        <>
+                            <span className="section-label">
+                                JOIN THE TEAM
+                            </span>
 
-                        <Link to="/sign-up">
-                            Create Account
-                        </Link>
-                    </>
-                ) : (
-                    <>
-                        <h2>
-                            Ready for your next event?
-                        </h2>
+                            <h2>
+                                Ready to join the next event?
+                            </h2>
 
-                        <Link to="/events">
-                            Browse Events
-                        </Link>
-                    </>
-                )}
+                            <p>
+                                Sign in or create an account
+                                to start registering.
+                            </p>
+
+                            <Link
+                                className="btn btn-primary"
+                                to="/sign-up"
+                            >
+                                Create Account
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <span className="section-label">
+                                YOUR NEXT EVENT
+                            </span>
+
+                            <h2>
+                                Ready for your next event?
+                            </h2>
+
+                            <Link
+                                className="btn btn-primary"
+                                to="/events"
+                            >
+                                Browse Events
+                            </Link>
+                        </>
+                    )}
+
+                </div>
 
             </section>
 
