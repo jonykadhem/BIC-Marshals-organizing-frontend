@@ -1,17 +1,43 @@
-# React + Vite
+# BIC-Marshals-Frontend
+A web app for managing motorsport marshal events at Bahrain International Circuit (BIC), including:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- browsing upcoming events
+- registering for marshal positions
+- viewing registered events and assignments
+- creating, editing, and deleting events
+- assigning marshal posts
+- managing users and roles through an admin panel
+![screen shot of the app]()
 
-Currently, two official plugins are available:
+## Getting Started
+### Try The App
+visit [Monthly Outing](https://monthly-outing-1.onrender.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### How To Use
+1. Sign up or sign in to your account.
+2. Browse the available events.
+3. Select an event and register for the marshal positions you can work.
+4. View your registered events and assigned posts from My Events.
+5. Organizers can create and manage events and assign posts to marshals.
+6. Admins can manage users and change their roles.
 
-## React Compiler
+### Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Technologies Used
+- HTML
+- CSS
+- JavaScript
+- React
+- React Router
+- Vite
+- MongoDB
+- Mongoose
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# BIC-Marshals-organizing-frontend
+### Future Enhancements
+- improve the mobile design
+- add event search and filtering
+- add notifications for marshal assignments
+- add a calendar for upcoming events
+- improve the admin dashboard with more statistics
+### Credits
+Created by **Sayed Mohsen Kadhem**
