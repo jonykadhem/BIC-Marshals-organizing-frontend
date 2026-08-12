@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as registrationService from "../services/registrations";
+import "../styles/RegistrationModal.css"
 
 const positions = [
     "Flag Post",
@@ -18,9 +19,7 @@ const RegistrationModal = ({ event, onClose, onRegistered }) => {
 
     const handlePositionChange = (position) => {
         if (selectedPositions.includes(position)) {
-            setSelectedPositions(selectedPositions.filter((item) => {
-                item !== position
-            }))
+            selectedPositions.filter((item) => item !== position)
         } else {
             setSelectedPositions([...selectedPositions, position])
         }
@@ -53,84 +52,124 @@ const RegistrationModal = ({ event, onClose, onRegistered }) => {
     }
 
     return (
-        <div className="modal-overlay">
+    <div className="modal-overlay">
 
-            <div className="registration-modal">
+        <div className="registration-modal">
 
-                <button
-                    type="button"
-                    className="close-button"
-                    onClick={onClose}
-                >
-                    ×
-                </button>
+            {/* Close */}
+            <button
+                type="button"
+                className="close-button"
+                onClick={onClose}
+                aria-label="Close"
+            >
+                ×
+            </button>
 
-                <h2>Register for Event</h2>
 
-                <h3>{event.title}</h3>
+            {/* Header */}
+            <div className="registration-modal-header">
+
+                <span className="section-label">
+                    EVENT REGISTRATION
+                </span>
+
+                <h2>
+                    Register for Event
+                </h2>
+
+                <h3>
+                    {event.title}
+                </h3>
 
                 <p>
-                    Select the positions you are able to work:
+                    Select the marshal positions you are
+                    able to work.
                 </p>
-
-                {message && (
-                    <p className="error">
-                        {message}
-                    </p>
-                )}
-
-                <form onSubmit={handleSubmit}>
-
-                    <div className="positions">
-
-                        {positions.map((position) => (
-                            <label
-                                key={position}
-                                className="position-option"
-                            >
-                                <input
-                                    type="checkbox"
-                                    value={position}
-                                    checked={selectedPositions.includes(
-                                        position
-                                    )}
-                                    onChange={() =>
-                                        handlePositionChange(position)
-                                    }
-                                />
-
-                                {position}
-                            </label>
-                        ))}
-
-                    </div>
-
-                    <div className="modal-actions">
-
-                        <button
-                            type="submit"
-                            disabled={loading}
-                        >
-                            {loading
-                                ? "Registering..."
-                                : "Confirm Registration"}
-                        </button>
-
-                        <button
-                            type="button"
-                            onClick={onClose}
-                        >
-                            Cancel
-                        </button>
-
-                    </div>
-
-                </form>
 
             </div>
 
+
+            {/* Error */}
+            {message && (
+                <p className="registration-modal-error">
+                    {message}
+                </p>
+            )}
+
+
+            {/* Form */}
+            <form onSubmit={handleSubmit}>
+
+                <div className="positions">
+
+                    {positions.map((position) => (
+
+                        <label
+                            key={position}
+                            className={`position-option ${
+                                selectedPositions.includes(position)
+                                    ? "selected"
+                                    : ""
+                            }`}
+                        >
+
+                            <input
+                                type="checkbox"
+                                value={position}
+                                checked={selectedPositions.includes(
+                                    position
+                                )}
+                                onChange={() =>
+                                    handlePositionChange(position)
+                                }
+                            />
+
+                            <span className="position-check">
+                                ✓
+                            </span>
+
+                            <span className="position-name">
+                                {position}
+                            </span>
+
+                        </label>
+
+                    ))}
+
+                </div>
+
+
+                {/* Actions */}
+                <div className="modal-actions">
+
+                    <button
+                        type="submit"
+                        className="modal-confirm-button"
+                        disabled={loading}
+                    >
+                        {loading
+                            ? "Registering..."
+                            : "Confirm Registration"}
+                    </button>
+
+
+                    <button
+                        type="button"
+                        className="modal-cancel-button"
+                        onClick={onClose}
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
         </div>
-    )
+
+    </div>
+)
 }
 
 export default RegistrationModal

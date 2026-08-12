@@ -1,0 +1,411 @@
+/* =========================
+   MODAL OVERLAY
+========================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(10, 16, 28, 0.72);
+
+    backdrop-filter: blur(4px);
+
+    animation: modalFadeIn 0.2s ease;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.registration-modal {
+    position: relative;
+
+    width: min(520px, 100%);
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 35px;
+
+    border-radius: 16px;
+
+    background: white;
+    color: #172033;
+
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+
+    animation: modalSlideUp 0.25s ease;
+}
+
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f1f3f6;
+    color: #687386;
+
+    font-size: 1.5rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.close-button:hover {
+    background: #d71920;
+    color: white;
+    transform: rotate(90deg);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.registration-modal-header {
+    padding-right: 40px;
+    margin-bottom: 25px;
+}
+
+.registration-modal-header .section-label {
+    color: #d71920;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.registration-modal-header h2 {
+    margin: 7px 0 8px;
+
+    font-size: 1.8rem;
+}
+
+.registration-modal-header h3 {
+    margin: 0 0 10px;
+
+    color: #d71920;
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.registration-modal-header p {
+    margin: 0;
+
+    color: #687386;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.registration-modal-error {
+    margin: 0 0 20px;
+    padding: 12px 15px;
+
+    border: 1px solid #f1b8bc;
+    border-radius: 8px;
+
+    background: #fcebec;
+    color: #a51d27;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+/* =========================
+   POSITIONS
+========================= */
+
+.positions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   POSITION OPTION
+========================= */
+
+.position-option {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-height: 55px;
+    padding: 12px 15px;
+
+    border: 1px solid #dce0e6;
+    border-radius: 9px;
+
+    background: #fafbfc;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.position-option:hover {
+    border-color: #d71920;
+    background: #fff;
+}
+
+
+/* Hide normal checkbox */
+
+.position-option input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+/* Custom checkbox */
+
+.position-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    border: 2px solid #cbd0d8;
+    border-radius: 5px;
+
+    color: transparent;
+
+    font-size: 0.75rem;
+    font-weight: 900;
+
+    transition: 0.2s ease;
+}
+
+
+/* Selected */
+
+.position-option.selected {
+    border-color: #d71920;
+
+    background: #fff4f4;
+}
+
+.position-option.selected .position-check {
+    border-color: #d71920;
+
+    background: #d71920;
+
+    color: white;
+}
+
+
+/* Position name */
+
+.position-name {
+    color: #172033;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.modal-actions {
+    display: flex;
+
+    gap: 12px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #e7e9ed;
+}
+
+
+/* =========================
+   CONFIRM BUTTON
+========================= */
+
+.modal-confirm-button,
+.modal-cancel-button {
+    flex: 1;
+
+    min-height: 48px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.modal-confirm-button {
+    background: #d71920;
+    color: white;
+}
+
+.modal-confirm-button:hover:not(:disabled) {
+    background: #b9141a;
+    transform: translateY(-2px);
+}
+
+.modal-confirm-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+.modal-cancel-button {
+    background: #eef0f4;
+    color: #172033;
+}
+
+.modal-cancel-button:hover {
+    background: #dfe3e9;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes modalFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes modalSlideUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 550px) {
+
+    .modal-overlay {
+        align-items: flex-end;
+
+        padding: 0;
+    }
+
+    .registration-modal {
+        width: 100%;
+        max-height: 90vh;
+
+        padding: 30px 20px 25px;
+
+        border-radius: 18px 18px 0 0;
+
+        animation: modalSlideUpMobile 0.25s ease;
+    }
+
+    .registration-modal-header {
+        padding-right: 35px;
+    }
+
+    .registration-modal-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .positions {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .modal-confirm-button,
+    .modal-cancel-button {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================
+   MOBILE ANIMATION
+========================= */
+
+@keyframes modalSlideUpMobile {
+
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
