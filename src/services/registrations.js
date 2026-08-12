@@ -69,9 +69,36 @@ const cancelRegistration = async (registrationId) => {
         throw error
     }
 }
+const getMyRegistrationForEvent = async (eventId) => {
+    try {
+        const res = await fetch(
+            `${BASE_URL}/registrations/my-events/${eventId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        )
+
+        const data = await res.json()
+
+        if (!res.ok) {
+            throw new Error(
+                data.err || "Failed to get registration"
+            )
+        }
+
+        return data
+
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
 
 export {
     registerForEvent,
     myRegistration,
-    cancelRegistration
+    cancelRegistration,
+    getMyRegistrationForEvent
 }

@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router"
 import * as eventService from "../services/events"
 import { useState, useEffect } from "react"
 import RegistrationModal from '../components/RegistrationModal'
+import * as registrationService from "../services/registrations"
 
 const EventDetails = (props) => {
     const { eventId } = useParams()
@@ -18,6 +19,12 @@ const EventDetails = (props) => {
             try {
                 const eventData = await eventService.show(eventId)
                 setEvent(eventData)
+                try {
+                    const registrationData = await registrationService.getMyRegistrationForEvent(eventId)
+                    setRegistration(registrationData)
+                } catch (error) {
+                    setRegistration(null)
+                }
             } catch (error) {
                 setmessage(error.message)
             }
@@ -69,7 +76,26 @@ const EventDetails = (props) => {
 
             <p> <strong>Created By:</strong> {event.createdBy.fullName}</p>
 
+            {registration && (
+                <div>
+                    <h3>Your Registration</h3>
 
+                    <p>
+                        <strong>Positions:</strong>{" "}
+                        {registration.positions.join(", ")}
+                    </p>
+
+                    <p>
+                        <strong>Assigned Post:</strong>{" "}
+                        {registration.assignedPost || "Not assigned yet"}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>{" "}
+                        {registration.status}
+                    </p>
+                </div>
+            )}
 
             {message && <p>{message}</p>}
 
@@ -86,11 +112,19 @@ const EventDetails = (props) => {
                         </button>
                     </>
                 )}
-            <button onClick={() => setShowRegistration(true)}>Register for Event</button>
+            {registration ? (
+                <div>
+                    <p>✓ You are registered for this event</p>
+                </div>
+            ) : (
+                <button onClick={() => setShowRegistration(true)}>
+                    Register for Event
+                </button>
+            )}
             {showRegistration && (
                 <RegistrationModal event={event} onClose={() => setShowRegistration(false)}
-                    onRegistered={(newRegistration) => { setRegistration(newRegistration)}} />
-                )}
+                    onRegistered={(newRegistration) => { setRegistration(newRegistration) }} />
+            )}
         </div>
 
     )
