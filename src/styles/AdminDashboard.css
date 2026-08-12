@@ -1,0 +1,323 @@
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
+.admin-dashboard-page {
+    min-height: 100vh;
+    padding: 60px 0 90px;
+
+    background: #f5f6f8;
+    color: #172033;
+}
+
+.admin-dashboard-container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.admin-dashboard-header {
+    margin-bottom: 40px;
+}
+
+.admin-dashboard-header .section-label {
+    color: #d71920;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.admin-dashboard-header h1 {
+    margin: 8px 0 12px;
+
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.1;
+}
+
+.admin-dashboard-header p {
+    max-width: 700px;
+    margin: 0;
+
+    color: #687386;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+.dashboard-stats {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 45px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 25px;
+
+    border: 1px solid #e2e5ea;
+    border-radius: 14px;
+
+    background: white;
+
+    box-shadow: 0 6px 20px rgba(20, 30, 50, 0.05);
+
+    transition: 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 30px rgba(20, 30, 50, 0.1);
+}
+
+
+/* Stat Icon */
+
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #172033;
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+
+/* Stat Text */
+
+.stat-card span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #8a93a2;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+.stat-card h2 {
+    margin: 0;
+
+    font-size: 2rem;
+    line-height: 1;
+}
+
+
+/* =========================
+   MANAGEMENT
+========================= */
+
+.admin-management {
+    padding: 35px;
+
+    border: 1px solid #e2e5ea;
+    border-radius: 16px;
+
+    background: white;
+
+    box-shadow: 0 8px 25px rgba(20, 30, 50, 0.05);
+}
+
+.admin-management-header {
+    margin-bottom: 25px;
+}
+
+.admin-management-header .section-label {
+    color: #d71920;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.admin-management-header h2 {
+    margin: 7px 0 7px;
+
+    font-size: 1.5rem;
+}
+
+.admin-management-header p {
+    margin: 0;
+
+    color: #687386;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.admin-actions {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.admin-action-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    border: 1px solid #e2e5ea;
+    border-radius: 10px;
+
+    background: #f8f9fa;
+    color: #172033;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.admin-action-card:hover {
+    border-color: #d71920;
+
+    background: white;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 20px rgba(20, 30, 50, 0.08);
+}
+
+
+/* Action Icon */
+
+.admin-action-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    background: #172033;
+    color: white;
+
+    font-weight: 800;
+}
+
+
+/* Action Content */
+
+.admin-action-card h3 {
+    margin: 0 0 5px;
+
+    font-size: 0.95rem;
+}
+
+.admin-action-card p {
+    margin: 0;
+
+    color: #687386;
+
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+
+/* Arrow */
+
+.admin-action-arrow {
+    margin-left: auto;
+
+    color: #d71920;
+
+    font-size: 1.2rem;
+    font-weight: 800;
+
+    transition: 0.2s ease;
+}
+
+.admin-action-card:hover .admin-action-arrow {
+    transform: translateX(5px);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-actions {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .admin-dashboard-page {
+        padding: 40px 0 60px;
+    }
+
+    .admin-dashboard-container {
+        width: 94%;
+    }
+
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .admin-management {
+        padding: 25px 18px;
+    }
+
+    .admin-action-card {
+        padding: 18px;
+    }
+
+}
