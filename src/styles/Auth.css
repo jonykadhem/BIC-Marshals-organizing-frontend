@@ -325,3 +325,22 @@
 
     box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.08);
 }
+
+.password-hint {
+    margin: 0;
+
+    color: #687386;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.password-rules {
+    margin: -12px 0 0;
+    padding-left: 20px;
+
+    color: #8a93a2;
+
+    font-size: 0.72rem;
+    line-height: 1.6;
+}

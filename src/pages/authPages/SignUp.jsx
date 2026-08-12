@@ -23,8 +23,38 @@ const SignUpForm = (props) => {
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value })
     }
+    const validatePassword = (password) => {
+        if (password.length < 8) {
+            return "Password must be at least 8 characters."
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return "Password must contain at least one uppercase letter."
+        }
+
+        if (!/[a-z]/.test(password)) {
+            return "Password must contain at least one lowercase letter."
+        }
+
+        if (!/[0-9]/.test(password)) {
+            return "Password must contain at least one number."
+        }
+
+        if (!/[!@#$%^&*]/.test(password)) {
+            return "Password must contain at least one special character."
+        }
+
+        return ""
+    }
     const handleSubmit = async (event) => {
         event.preventDefault()
+
+        const passwordError = validatePassword(formData.password)
+
+        if (passwordError) {
+            setMessage(passwordError)
+            return
+        }
         if (formData.password !== formData.confirmPassword) {
             setMessage("Passwords do not match.")
             return
@@ -45,6 +75,8 @@ const SignUpForm = (props) => {
             return true
         } else return false
     }
+
+
 
     return (
         <main className="auth-page">
@@ -234,6 +266,17 @@ const SignUpForm = (props) => {
                         />
 
                     </div>
+                    <p className="password-hint">
+                        Password must contain:
+                    </p>
+
+                    <ul className="password-rules">
+                        <li>At least 8 characters</li>
+                        <li>One uppercase letter</li>
+                        <li>One lowercase letter</li>
+                        <li>One number</li>
+                        <li>One special character</li>
+                    </ul>
 
 
                     {/* Confirm Password */}
