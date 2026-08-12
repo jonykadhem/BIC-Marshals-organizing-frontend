@@ -15,10 +15,11 @@ visit [Monthly Outing](https://monthly-outing-1.onrender.com)
 
 ### How To Use
 1. Sign up or sign in to your account.
-2. Browse the suggestions page to see restaurants awaiting a review.
-3. Suggest a new restaurant if you know one worth visiting.
-4. Reviewers can pick a suggested restaurant and submit a rating and comment.
-5. Once reviewed, the restaurant moves to the reviews page with its average star rating.
+2. Browse the available events.
+3. Select an event and register for the marshal positions you can work.
+4. View your registered events and assigned posts from My Events.
+5. Organizers can create and manage events and assign posts to marshals.
+6. Admins can manage users and change their roles.
 
 ### Installation
 
@@ -26,18 +27,17 @@ visit [Monthly Outing](https://monthly-outing-1.onrender.com)
 - HTML
 - CSS
 - JavaScript
-- Node.js
-- Express
-- EJS
+- React
+- React Router
+- Vite
 - MongoDB
 - Mongoose
-- Cloudinary
-- Bootstrap
+
 ### Future Enhancements
-- search and filter restaurants by cuisine or area
-- comment replies and discussion threads
-- favorite/bookmark restaurants
-- email notifications when a suggestion gets reviewed
-- pagination for the feed and suggestions pages
+- improve the mobile design
+- add event search and filtering
+- add notifications for marshal assignments
+- add a calendar for upcoming events
+- improve the admin dashboard with more statistics
 ### Credits
 Created by **Sayed Mohsen Kadhem**
