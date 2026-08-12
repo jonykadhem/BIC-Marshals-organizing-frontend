@@ -32,7 +32,7 @@ const EventDetails = (props) => {
 
         try {
             const deletedEvent = await eventService.deleteEvent(eventId)
-            setEvent(props.events.filter((event) => event._id !== eventId))
+            props.setEvents(props.events.filter((event) => event._id !== eventId))
 
             navigate("/events")
         } catch (error) {

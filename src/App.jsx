@@ -51,7 +51,7 @@ const App = () => {
           )}
           
           <Route path='/events' element={<EventList events={events}  />} />
-          <Route path='/events/:eventId' element={<EventDetails events={events} user={user}/>} />
+          <Route path='/events/:eventId' element={<EventDetails events={events} user={user} setEvents={setEvents}/>} />
           <Route path='/events/:eventId/edit' element={<EditEvent events={events} user={user} setEvents={setEvents}/>} />
           
           </>

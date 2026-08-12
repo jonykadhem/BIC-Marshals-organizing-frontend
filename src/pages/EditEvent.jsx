@@ -59,10 +59,11 @@ const EditEvent = (props) => {
                     maxMarshals: Number(formData.maxMarshals),
                 }
             )
-
+            console.log('updated event: ', updatedEvent)
             const updatedEventList = props.events.map((event)=> {
                 return eventId === event._id ? updatedEvent : event
             })
+            props.setEvents(updatedEventList)
             setFormData(updatedEventList)
             navigate(`/events/${eventId}`)
 
