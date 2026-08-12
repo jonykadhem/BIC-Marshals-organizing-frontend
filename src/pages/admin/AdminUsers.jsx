@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
-import * as adminService from "../services/admin"
+import * as adminService from "../../services/admin"
 
 const AdminUsers = () => {
     const navigate = useNavigate()

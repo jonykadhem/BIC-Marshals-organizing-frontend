@@ -12,6 +12,8 @@ import EventDetails from './pages/EventDetails'
 import EditEvent from "./pages/EditEvent"
 import MyEvents from './pages/MyEvents'
 import EventRegistrations from './pages/EventRegistrations'
+import AdminDashboard from "./pages/admin/AdminDashboard"
+import AdminUsers from "./pages/admin/AdminUsers"
 
 
 
