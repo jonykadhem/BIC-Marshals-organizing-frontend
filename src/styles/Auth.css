@@ -1,0 +1,297 @@
+/* =========================
+   AUTH PAGE
+========================= */
+
+.auth-page {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 50px 20px;
+
+    background: #f5f6f8;
+}
+
+
+/* =========================
+   AUTH CARD
+========================= */
+
+.auth-card {
+    width: min(450px, 100%);
+
+    padding: 40px;
+
+    border: 1px solid #e2e5ea;
+    border-radius: 16px;
+
+    background: white;
+
+    box-shadow: 0 15px 40px rgba(20, 30, 50, 0.08);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.auth-header {
+    margin-bottom: 30px;
+
+    text-align: center;
+}
+
+.auth-label {
+    color: #d71920;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.auth-header h1 {
+    margin: 8px 0 10px;
+
+    color: #172033;
+
+    font-size: 2.2rem;
+}
+
+.auth-header p {
+    margin: 0;
+
+    color: #687386;
+
+    font-size: 0.9rem;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.auth-message {
+    margin-bottom: 20px;
+
+    padding: 12px 15px;
+
+    border: 1px solid #f1b8bc;
+    border-radius: 8px;
+
+    background: #fcebec;
+    color: #a51d27;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.auth-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.form-group label {
+    color: #172033;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 14px;
+
+    border: 1px solid #dce0e6;
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #fafbfc;
+    color: #172033;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+
+    transition: 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #a0a7b3;
+}
+
+.form-group input:hover {
+    border-color: #b9bec8;
+}
+
+.form-group input:focus {
+    border-color: #d71920;
+
+    background: white;
+
+    box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.08);
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.auth-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 5px;
+}
+
+.auth-primary-button,
+.auth-secondary-button {
+    flex: 1;
+
+    min-height: 46px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+/* Sign In */
+
+.auth-primary-button {
+    background: #d71920;
+    color: white;
+}
+
+.auth-primary-button:hover {
+    background: #b9141a;
+
+    transform: translateY(-2px);
+}
+
+
+/* Cancel */
+
+.auth-secondary-button {
+    background: #eef0f4;
+    color: #172033;
+}
+
+.auth-secondary-button:hover {
+    background: #dfe3e9;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.auth-footer {
+    margin-top: 28px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #e7e9ed;
+
+    text-align: center;
+}
+
+.auth-footer p {
+    display: inline;
+
+    margin: 0;
+
+    color: #687386;
+
+    font-size: 0.85rem;
+}
+
+.auth-footer button {
+    margin-left: 5px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+    color: #d71920;
+
+    font-family: inherit;
+
+    font-size: 0.85rem;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.auth-footer button:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    .auth-page {
+        align-items: flex-start;
+
+        padding: 30px 15px;
+    }
+
+    .auth-card {
+        padding: 30px 22px;
+
+        border-radius: 12px;
+    }
+
+    .auth-header h1 {
+        font-size: 1.9rem;
+    }
+
+    .auth-actions {
+        flex-direction: column;
+    }
+
+    .auth-primary-button,
+    .auth-secondary-button {
+        width: 100%;
+    }
+
+}

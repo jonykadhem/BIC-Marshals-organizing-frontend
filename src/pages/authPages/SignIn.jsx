@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router"
 import { useState } from "react"
 import { signIn } from "../../services/auth"
+import "../../styles/Auth.css"
 
 const SignInForm = (props) => {
 
@@ -45,11 +46,6 @@ const SignInForm = (props) => {
                     <h1>
                         Sign In
                     </h1>
-
-                    <p>
-                        Sign in to manage your events and marshal
-                        registrations.
-                    </p>
 
                 </header>
 
