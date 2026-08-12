@@ -1,0 +1,491 @@
+/* =========================
+   ADMIN USERS PAGE
+========================= */
+
+.admin-users-page {
+    min-height: 100vh;
+
+    padding: 50px 0 90px;
+
+    background: #f5f6f8;
+    color: #172033;
+}
+
+.admin-users-container {
+    width: min(1050px, 92%);
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.admin-users-header {
+    margin-bottom: 35px;
+}
+
+.back-button {
+    margin-bottom: 30px;
+
+    padding: 9px 15px;
+
+    border: 1px solid #dce0e6;
+    border-radius: 7px;
+
+    background: white;
+    color: #172033;
+
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.back-button:hover {
+    border-color: #d71920;
+
+    color: #d71920;
+
+    transform: translateX(-3px);
+}
+
+.admin-users-header .section-label {
+    display: block;
+
+    color: #d71920;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.admin-users-header h1 {
+    margin: 8px 0 12px;
+
+    font-size: clamp(2.3rem, 5vw, 3.5rem);
+
+    line-height: 1.1;
+}
+
+.admin-users-header p {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: #687386;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.admin-users-message {
+    margin-bottom: 25px;
+
+    padding: 13px 16px;
+
+    border: 1px solid #b8dcbf;
+    border-radius: 8px;
+
+    background: #edf8ef;
+    color: #217a32;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+/* =========================
+   USERS LIST
+========================= */
+
+.users-list {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================
+   USER CARD
+========================= */
+
+.user-card {
+    overflow: hidden;
+
+    border: 1px solid #e2e5ea;
+    border-radius: 14px;
+
+    background: white;
+
+    box-shadow: 0 6px 20px rgba(20, 30, 50, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #d71920;
+
+    box-shadow: 0 14px 30px rgba(20, 30, 50, 0.1);
+}
+
+
+/* =========================
+   USER HEADER
+========================= */
+
+.user-card-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 22px;
+
+    border-bottom: 1px solid #e7e9ed;
+}
+
+
+/* Avatar */
+
+.user-avatar {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #172033;
+    color: white;
+
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.user-name {
+    min-width: 0;
+}
+
+.user-name h2 {
+    margin: 0 0 4px;
+
+    font-size: 1.1rem;
+}
+
+.user-name span {
+    display: block;
+
+    overflow: hidden;
+
+    color: #687386;
+
+    font-size: 0.8rem;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================
+   USER INFORMATION
+========================= */
+
+.user-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    padding: 20px 22px;
+}
+
+.user-info-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    min-width: 0;
+}
+
+.user-info-item > span:first-child {
+    color: #8a93a2;
+
+    font-size: 0.65rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+.user-info-item strong {
+    overflow: hidden;
+
+    font-size: 0.85rem;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================
+   ROLE BADGES
+========================= */
+
+.role-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 0.65rem !important;
+    font-weight: 800 !important;
+
+    text-transform: uppercase;
+}
+
+.role-marshal {
+    background: #e9f8ed;
+
+    color: #218838;
+}
+
+.role-organizer {
+    background: #e8f1ff;
+
+    color: #2563a8;
+}
+
+.role-admin {
+    background: #fcebec;
+
+    color: #c82333;
+}
+
+
+/* =========================
+   ROLE MANAGEMENT
+========================= */
+
+.role-management {
+    padding: 18px 22px;
+
+    border-top: 1px solid #e7e9ed;
+
+    background: #fafbfc;
+}
+
+.role-selector {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.role-selector label {
+    color: #687386;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+
+/* Select */
+
+.role-selector select {
+    min-width: 135px;
+
+    padding: 9px 12px;
+
+    border: 1px solid #dce0e6;
+    border-radius: 7px;
+
+    outline: none;
+
+    background: white;
+    color: #172033;
+
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.role-selector select:hover,
+.role-selector select:focus {
+    border-color: #d71920;
+}
+
+
+/* =========================
+   ADMIN PROTECTED
+========================= */
+
+.admin-protected {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.admin-shield {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 35px;
+    height: 35px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #fcebec;
+    color: #d71920;
+
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+.admin-protected strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 0.8rem;
+}
+
+.admin-protected p {
+    margin: 0;
+
+    color: #8a93a2;
+
+    font-size: 0.7rem;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.users-empty {
+    padding: 70px 25px;
+
+    border: 1px solid #e2e5ea;
+    border-radius: 14px;
+
+    background: white;
+
+    text-align: center;
+}
+
+.users-empty h2 {
+    margin: 0 0 8px;
+}
+
+.users-empty p {
+    margin: 0;
+
+    color: #687386;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 800px) {
+
+    .users-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .admin-users-page {
+        padding: 35px 0 60px;
+    }
+
+    .admin-users-container {
+        width: 94%;
+    }
+
+    .user-info {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 430px) {
+
+    .role-selector {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .role-selector select {
+        width: 100%;
+    }
+
+    .user-card-header {
+        padding: 18px;
+    }
+
+    .user-info {
+        padding: 18px;
+    }
+
+    .role-management {
+        padding: 16px 18px;
+    }
+
+}

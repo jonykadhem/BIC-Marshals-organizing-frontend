@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import * as adminService from "../../services/admin"
+import '../../styles/AdminUsers.css'
 
 const AdminUsers = () => {
     const navigate = useNavigate()
@@ -42,98 +43,208 @@ const AdminUsers = () => {
     }
 
     return (
-        <main>
+        <main className="admin-users-page">
 
-            <button onClick={() => navigate("/admin")}>
-                ← Back to Dashboard
-            </button>
+            <div className="admin-users-container">
 
-            <h1>Manage Users</h1>
+                {/* Header */}
+                <div className="admin-users-header">
 
-            {message && (
-                <p>{message}</p>
-            )}
+                    <button
+                        className="back-button"
+                        onClick={() => navigate("/admin")}
+                    >
+                        ← Back to Dashboard
+                    </button>
 
-            {users.length === 0 ? (
-                <p>No users found.</p>
-            ) : (
+                    <span className="section-label">
+                        ADMINISTRATION
+                    </span>
 
-                <div className="users-list">
+                    <h1>
+                        Manage Users
+                    </h1>
 
-                    {users.map((user) => (
-
-                        <div
-                            key={user._id}
-                            className="user-card"
-                        >
-
-                            <h2>
-                                {user.fullName}
-                            </h2>
-
-                            <p>
-                                <strong>Email:</strong>{" "}
-                                {user.email}
-                            </p>
-
-                            <p>
-                                <strong>License:</strong>{" "}
-                                {user.licenseNo || "N/A"}
-                            </p>
-
-                            <p>
-                                <strong>Current Role:</strong>{" "}
-                                {user.role}
-                            </p>
-
-
-                            {user.role === "admin" ? (
-
-                                <p>
-                                    <strong>
-                                        Admin
-                                    </strong>
-                                </p>
-
-                            ) : (
-
-                                <div>
-
-                                    <label>
-                                        Change Role:
-                                    </label>
-
-                                    <select
-                                        value={user.role}
-                                        onChange={(e) =>
-                                            handleRoleChange(
-                                                user._id,
-                                                e.target.value
-                                            )
-                                        }
-                                    >
-
-                                        <option value="marshal">
-                                            Marshal
-                                        </option>
-
-                                        <option value="organizer">
-                                            Organizer
-                                        </option>
-
-                                    </select>
-
-                                </div>
-
-                            )}
-
-                        </div>
-
-                    ))}
+                    <p>
+                        View registered users and manage their
+                        system roles.
+                    </p>
 
                 </div>
 
-            )}
+
+                {/* Message */}
+                {message && (
+                    <div className="admin-users-message">
+                        {message}
+                    </div>
+                )}
+
+
+                {/* Users */}
+                {users.length === 0 ? (
+
+                    <div className="users-empty">
+
+                        <h2>
+                            No users found
+                        </h2>
+
+                        <p>
+                            There are currently no users to display.
+                        </p>
+
+                    </div>
+
+                ) : (
+
+                    <div className="users-list">
+
+                        {users.map((user) => (
+
+                            <div
+                                key={user._id}
+                                className="user-card"
+                            >
+
+                                {/* User Header */}
+                                <div className="user-card-header">
+
+                                    <div className="user-avatar">
+                                        {user.fullName
+                                            ?.charAt(0)
+                                            .toUpperCase()}
+                                    </div>
+
+                                    <div className="user-name">
+
+                                        <h2>
+                                            {user.fullName}
+                                        </h2>
+
+                                        <span>
+                                            {user.email}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                {/* User Information */}
+                                <div className="user-info">
+
+                                    <div className="user-info-item">
+
+                                        <span>
+                                            Email
+                                        </span>
+
+                                        <strong>
+                                            {user.email}
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div className="user-info-item">
+
+                                        <span>
+                                            License Number
+                                        </span>
+
+                                        <strong>
+                                            {user.licenseNo || "N/A"}
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div className="user-info-item">
+
+                                        <span>
+                                            Current Role
+                                        </span>
+
+                                        <span
+                                            className={`role-badge role-${user.role}`}
+                                        >
+                                            {user.role}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                {/* Role Management */}
+                                <div className="role-management">
+
+                                    {user.role === "admin" ? (
+
+                                        <div className="admin-protected">
+
+                                            <span className="admin-shield">
+                                                ✓
+                                            </span>
+
+                                            <div>
+                                                <strong>
+                                                    Administrator
+                                                </strong>
+
+                                                <p>
+                                                    Admin roles cannot be
+                                                    changed here.
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                    ) : (
+
+                                        <div className="role-selector">
+
+                                            <label htmlFor={`role-${user._id}`}>
+                                                Change Role
+                                            </label>
+
+                                            <select
+                                                id={`role-${user._id}`}
+                                                value={user.role}
+                                                onChange={(e) =>
+                                                    handleRoleChange(
+                                                        user._id,
+                                                        e.target.value
+                                                    )
+                                                }
+                                            >
+
+                                                <option value="marshal">
+                                                    Marshal
+                                                </option>
+
+                                                <option value="organizer">
+                                                    Organizer
+                                                </option>
+
+                                            </select>
+
+                                        </div>
+
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        ))}
+
+                    </div>
+
+                )}
+
+            </div>
 
         </main>
     )
