@@ -33,13 +33,13 @@ const App = () => {
       const eventsData = await eventService.index()
       setEvents(eventsData)
     }
-    if(user) fetchAllEvents()
+    if (user) fetchAllEvents()
   }, [user])
 
   const handleAddEvent = async (formData) => {
-             const newEvent = await eventService.create(formData)
-             const updatedEvents = [newEvent, ...events]
-              setEvents(updatedEvents)
+    const newEvent = await eventService.create(formData)
+    const updatedEvents = [newEvent, ...events]
+    setEvents(updatedEvents)
   }
 
   return (
@@ -49,25 +49,33 @@ const App = () => {
         <Route path='/' element={<Home />} />
         {user ? (
           <>
-          {(user.role === "orgnizer" || user.role === "admin") && (
-            <>
-            <Route path='/events/new' element={<CreateEvent setEvents={setEvents} handleAddEvent={handleAddEvent}/>} />
-            <Route path='/events/:eventId/registrations' element={<EventRegistrations />} />
-            <Route path='/events/events/:registrationId/assign' element={<EventRegistrations />} />
+            {(user.role === "orgnizer" || user.role === "admin") && (
+              <>
+                <Route path='/events/new' element={<CreateEvent setEvents={setEvents} handleAddEvent={handleAddEvent} />} />
+                <Route path='/events/:eventId/registrations' element={<EventRegistrations />} />
+                <Route path='/events/events/:registrationId/assign' element={<EventRegistrations />} />
 
-            </>
-          )}
-          
-          <Route path='/events' element={<EventList events={events}  />} />
-          <Route path='/events/:eventId' element={<EventDetails events={events} user={user} setEvents={setEvents}/>} />
-          <Route path='/events/:eventId/edit' element={<EditEvent events={events} user={user} setEvents={setEvents}/>} />
-          <Route path='/events/my-events' element={<MyEvents />} />
-          
+              </>
+            )}
+
+            <Route path='/events' element={<EventList events={events} />} />
+            <Route path='/events/:eventId' element={<EventDetails events={events} user={user} setEvents={setEvents} />} />
+            <Route path='/events/:eventId/edit' element={<EditEvent events={events} user={user} setEvents={setEvents} />} />
+            <Route path='/events/my-events' element={<MyEvents />} />
+
           </>
         ) : (
           <>
             <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
             <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
+          </>
+        )}
+        {user && user.role === "admin" && (
+          <>
+            <Route path="/admin" element={<AdminDashboard />} />
+
+            <Route path="/admin/users" element={<AdminUsers />}
+            />
           </>
         )}
       </Routes>
