@@ -1,0 +1,439 @@
+/* =========================
+   MY EVENTS PAGE
+========================= */
+
+.my-events-page {
+    min-height: 100vh;
+
+    padding: 60px 0 90px;
+
+    background: #f5f6f8;
+    color: #172033;
+}
+
+.my-events-container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.my-events-header {
+    margin-bottom: 40px;
+}
+
+.my-events-header .section-label {
+    color: #d71920;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.my-events-header h1 {
+    margin: 8px 0 12px;
+
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+
+    line-height: 1.1;
+}
+
+.my-events-header p {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: #687386;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   EVENTS GRID
+========================= */
+
+.my-events-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 22px;
+}
+
+
+/* =========================
+   EVENT CARD
+========================= */
+
+.my-event-card {
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px;
+
+    border: 1px solid #e2e5ea;
+    border-radius: 14px;
+
+    background: white;
+
+    box-shadow: 0 6px 20px rgba(20, 30, 50, 0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.my-event-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #d71920;
+
+    box-shadow: 0 15px 35px rgba(20, 30, 50, 0.1);
+}
+
+
+/* =========================
+   CARD HEADER
+========================= */
+
+.my-event-card-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.my-event-card-header h2 {
+    margin: 0;
+
+    font-size: 1.35rem;
+
+    line-height: 1.3;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.my-event-status {
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    font-size: 0.65rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+.my-event-status-registered {
+    background: #e9f8ed;
+    color: #218838;
+}
+
+.my-event-status-assigned {
+    background: #e8f1ff;
+    color: #2563a8;
+}
+
+.my-event-status-cancelled {
+    background: #fcebec;
+    color: #c82333;
+}
+
+
+/* =========================
+   EVENT INFO
+========================= */
+
+.my-event-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+.my-event-info-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    padding: 15px;
+
+    border-radius: 9px;
+
+    background: #f7f8fa;
+}
+
+.my-event-info-item span {
+    color: #8a93a2;
+
+    font-size: 0.65rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+.my-event-info-item strong {
+    font-size: 0.85rem;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   ASSIGNMENT
+========================= */
+
+.marshal-assignment {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #e7e9ed;
+}
+
+.assignment-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.assignment-item span {
+    color: #8a93a2;
+
+    font-size: 0.65rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+.assignment-item strong {
+    font-size: 0.9rem;
+
+    line-height: 1.5;
+}
+
+
+/* Assigned post */
+
+.assignment-item strong.assigned {
+    color: #218838;
+}
+
+
+/* Not assigned */
+
+.assignment-item strong.not-assigned {
+    color: #8a93a2;
+}
+
+
+/* =========================
+   CARD FOOTER
+========================= */
+
+.my-event-card-footer {
+    margin-top: 25px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #e7e9ed;
+}
+
+.my-event-card-footer button {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #172033;
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.my-event-card-footer button:hover {
+    background: #d71920;
+
+    transform: translateY(-2px);
+}
+
+.my-event-card-footer button span {
+    font-size: 1.1rem;
+
+    transition: transform 0.2s ease;
+}
+
+.my-event-card-footer button:hover span {
+    transform: translateX(5px);
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.my-events-empty {
+    padding: 70px 25px;
+
+    border: 1px solid #e2e5ea;
+    border-radius: 16px;
+
+    background: white;
+
+    text-align: center;
+}
+
+.my-events-empty .empty-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: #eef0f4;
+    color: #687386;
+
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.my-events-empty h2 {
+    margin: 0 0 10px;
+}
+
+.my-events-empty p {
+    margin: 0 0 25px;
+
+    color: #687386;
+}
+
+
+/* =========================
+   BROWSE BUTTON
+========================= */
+
+.my-events-browse-button {
+    padding: 12px 22px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #d71920;
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.my-events-browse-button:hover {
+    background: #b9141a;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 800px) {
+
+    .my-events-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .my-events-page {
+        padding: 40px 0 60px;
+    }
+
+    .my-events-container {
+        width: 94%;
+    }
+
+    .my-event-card {
+        padding: 22px 18px;
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 430px) {
+
+    .my-event-card-header {
+        flex-direction: column;
+    }
+
+    .my-event-status {
+        align-self: flex-start;
+    }
+
+    .my-event-info {
+        grid-template-columns: 1fr;
+    }
+
+}
