@@ -34,7 +34,7 @@ const MyEvents = () => {
                 <p>You haven't registered for any events yet.</p>
             ) : (
                 <div className="my-events">
-                    {registrations.map((registration) => {
+                    {registrations.map((registration) => (
                         <div className="event-card" key={registration._id}>
                             <h2>{registration.event.title}</h2>
 
@@ -75,7 +75,7 @@ const MyEvents = () => {
                                 View Event
                             </button>
                         </div>
-                    })}
+                    ))}
                 </div>
             )}
         </main>
