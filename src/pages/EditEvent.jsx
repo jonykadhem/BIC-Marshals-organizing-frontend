@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import * as eventService from "../services/events"
+import "../styles/EditEvent.css"
 
 const EditEvent = (props) => {
     const { eventId } = useParams()
@@ -72,106 +73,167 @@ const EditEvent = (props) => {
         }
     }
     return (
-        <main className="create-event">
+    <main className="edit-event-page">
 
-            <h1>Create Event</h1>
+        <div className="edit-event-container">
 
+            {/* Header */}
+            <div className="edit-event-header">
+
+                <span className="section-label">
+                    EVENT MANAGEMENT
+                </span>
+
+                <h1>Edit Event</h1>
+
+                <p>
+                    Update the event details and registration
+                    information.
+                </p>
+
+            </div>
+
+
+            {/* Error Message */}
             {message && (
-                <p className="error">
+                <p className="edit-event-error">
                     {message}
                 </p>
             )}
 
-            <form onSubmit={handleSubmit}>
 
-                <label htmlFor="title">
-                    Event Title
-                </label>
+            {/* Form */}
+            <form
+                className="edit-event-form"
+                onSubmit={handleSubmit}
+            >
 
-                <input
-                    id="title"
-                    type="text"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    required
-                />
+                <div className="form-group">
 
-                <label htmlFor="description">
-                    Description
-                </label>
+                    <label htmlFor="title">
+                        Event Title
+                    </label>
 
-                <textarea
-                    id="description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    placeholder="Enter event description"
-                />
+                    <input
+                        id="title"
+                        type="text"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        placeholder="Enter event title"
+                        required
+                    />
+
+                </div>
 
 
+                <div className="form-group">
 
-                <label htmlFor="eventDate">
-                    Event Date
-                </label>
+                    <label htmlFor="description">
+                        Description
+                    </label>
 
-                <input
-                    id="eventDate"
-                    type="datetime-local"
-                    name="eventDate"
-                    value={formData.eventDate}
-                    onChange={handleChange}
-                    required
-                />
+                    <textarea
+                        id="description"
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        placeholder="Enter event description"
+                        rows="5"
+                    />
 
-                <label htmlFor="registrationDeadline">
-                    Registration Deadline
-                </label>
+                </div>
 
-                <input
-                    id="registrationDeadline"
-                    type="datetime-local"
-                    name="registrationDeadline"
-                    value={formData.registrationDeadline}
-                    onChange={handleChange}
-                    required
-                />
 
-                <label htmlFor="maxMarshals">
-                    Maximum Marshals
-                </label>
+                <div className="form-row">
 
-                <input
-                    id="maxMarshals"
-                    type="number"
-                    name="maxMarshals"
-                    value={formData.maxMarshals}
-                    onChange={handleChange}
-                    min="1"
-                    placeholder="100"
-                    required
-                />
+                    <div className="form-group">
 
-                <div className="actions">
+                        <label htmlFor="eventDate">
+                            Event Date
+                        </label>
 
-                    <button type="submit">
-                        Edit Event
-                    </button>
+                        <input
+                            id="eventDate"
+                            type="datetime-local"
+                            name="eventDate"
+                            value={formData.eventDate}
+                            onChange={handleChange}
+                            required
+                        />
+
+                    </div>
+
+
+                    <div className="form-group">
+
+                        <label htmlFor="registrationDeadline">
+                            Registration Deadline
+                        </label>
+
+                        <input
+                            id="registrationDeadline"
+                            type="datetime-local"
+                            name="registrationDeadline"
+                            value={formData.registrationDeadline}
+                            onChange={handleChange}
+                            required
+                        />
+
+                    </div>
+
+                </div>
+
+
+                <div className="form-group">
+
+                    <label htmlFor="maxMarshals">
+                        Maximum Marshals
+                    </label>
+
+                    <input
+                        id="maxMarshals"
+                        type="number"
+                        name="maxMarshals"
+                        value={formData.maxMarshals}
+                        onChange={handleChange}
+                        min="1"
+                        placeholder="100"
+                        required
+                    />
+
+                </div>
+
+
+                {/* Actions */}
+                <div className="form-actions">
 
                     <button
                         type="button"
-                        onClick={() => navigate(`/events/${eventId}`)}
+                        className="btn btn-secondary"
+                        onClick={() =>
+                            navigate(`/events/${eventId}`)
+                        }
                     >
                         Cancel
                     </button>
 
 
+                    <button
+                        type="submit"
+                        className="btn btn-primary"
+                    >
+                        Save Changes
+                    </button>
+
                 </div>
 
             </form>
 
-        </main>
-    )
+        </div>
+
+    </main>
+)
 }
 
 export default EditEvent
