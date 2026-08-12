@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import '../styles/Nav.css'
 
 const Nav = (props) => {
     const handleSignOut = () => {

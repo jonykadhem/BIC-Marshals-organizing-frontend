@@ -3,6 +3,7 @@ import * as eventService from "../services/events"
 import { useState, useEffect } from "react"
 import RegistrationModal from '../components/RegistrationModal'
 import * as registrationService from "../services/registrations"
+import "../styles/EventDetails.css"
 
 const EventDetails = (props) => {
     const { eventId } = useParams()
@@ -69,95 +70,345 @@ const EventDetails = (props) => {
         return <p>Loading...</p>
     }
     return (
-        <div>
-            <h1>{event.title}</h1>
+    <main className="event-details-page">
 
-            <p>{event.description}</p>
+        {/* Back Button */}
+        <div className="event-details-container">
 
-            <p>
-                <strong>Event Date:</strong>{" "}
-                {new Date(event.eventDate).toLocaleDateString()}
-            </p>
+            <button
+                className="back-button"
+                onClick={() => navigate("/events")}
+            >
+                ← Back to Events
+            </button>
 
-            <p>
-                <strong>Maximum Marshals:</strong>{" "}
-                {event.maxMarshals}
-            </p>
-            <p>
-                <strong>Registered Marshals:</strong>{" "}
-                {event.registrationCount} / {event.maxMarshals}
-            </p>
 
-            <p>
-                <strong>Status:</strong> {event.status}
-            </p>
-            <p>
-                <strong>Registration Deadline:</strong> {new Date(event.registrationDeadline).toLocaleDateString()}
-            </p>
+            {/* Event Header */}
+            <section className="event-details-header">
 
-            <p> <strong>Created By:</strong> {event.createdBy.fullName}</p>
+                <div className="event-details-title">
 
+                    <span className="section-label">
+                        EVENT DETAILS
+                    </span>
+
+                    <h1>{event.title}</h1>
+
+                    <p className="event-description">
+                        {event.description}
+                    </p>
+
+                </div>
+
+                <span
+                    className={`event-status event-status-${event.status?.toLowerCase()}`}
+                >
+                    {event.status}
+                </span>
+
+            </section>
+
+
+            {/* Event Information */}
+            <section className="event-info-card">
+
+                <h2>Event Information</h2>
+
+                <div className="event-details-grid">
+
+                    <div className="detail-item">
+                        <span className="detail-label">
+                            Event Date
+                        </span>
+
+                        <span className="detail-value">
+                            {new Date(
+                                event.eventDate
+                            ).toLocaleDateString()}
+                        </span>
+                    </div>
+
+
+                    <div className="detail-item">
+                        <span className="detail-label">
+                            Registration Deadline
+                        </span>
+
+                        <span className="detail-value">
+                            {new Date(
+                                event.registrationDeadline
+                            ).toLocaleDateString()}
+                        </span>
+                    </div>
+
+
+                    <div className="detail-item">
+                        <span className="detail-label">
+                            Maximum Marshals
+                        </span>
+
+                        <span className="detail-value">
+                            {event.maxMarshals}
+                        </span>
+                    </div>
+
+
+                    <div className="detail-item">
+                        <span className="detail-label">
+                            Registered Marshals
+                        </span>
+
+                        <span className="detail-value">
+                            {event.registrationCount} /{" "}
+                            {event.maxMarshals}
+                        </span>
+                    </div>
+
+
+                    <div className="detail-item">
+                        <span className="detail-label">
+                            Created By
+                        </span>
+
+                        <span className="detail-value">
+                            {event.createdBy.fullName}
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            {/* Your Registration */}
             {registration && (
-                <div>
-                    <h3>Your Registration</h3>
+                <section className="registration-card">
 
-                    <p>
-                        <strong>Positions:</strong>{" "}
-                        {registration.positions.join(", ")}
-                    </p>
+                    <div className="registration-header">
 
-                    <p>
-                        <strong>Assigned Post:</strong>{" "}
-                        {registration.assignedPost || "Not assigned yet"}
-                    </p>
+                        <div>
+                            <span className="section-label">
+                                YOUR REGISTRATION
+                            </span>
 
-                    <p>
-                        <strong>Status:</strong>{" "}
-                        {registration.status}
-                    </p>
+                            <h2>
+                                Registration Details
+                            </h2>
+                        </div>
+
+                        <span
+                            className={`registration-status registration-status-${registration.status?.toLowerCase()}`}
+                        >
+                            {registration.status}
+                        </span>
+
+                    </div>
+
+
+                    <div className="registration-details">
+
+                        <div className="registration-detail">
+
+                            <span>
+                                Positions
+                            </span>
+
+                            <strong>
+                                {registration.positions.join(", ")}
+                            </strong>
+
+                        </div>
+
+
+                        <div className="registration-detail">
+
+                            <span>
+                                Assigned Post
+                            </span>
+
+                            <strong>
+                                {registration.assignedPost ||
+                                    "Not assigned yet"}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
 
                     {registration.status === "Registered" && (
-                        <button onClick={handleCancelRegistration}>
+                        <button
+                            className="btn btn-danger"
+                            onClick={handleCancelRegistration}
+                        >
                             Cancel Registration
                         </button>
                     )}
+
+                </section>
+            )}
+
+
+            {/* Message */}
+            {message && (
+                <div className="message-box">
+                    {message}
                 </div>
             )}
 
-            {message && <p>{message}</p>}
 
+            {/* Organizer / Admin Actions */}
             {(props.user.role === "admin" ||
                 (props.user.role === "organizer" &&
                     event.createdBy._id === props.user._id)) && (
-                    <>
-                        <button onClick={handleDelete}>
-                            Delete Event
-                        </button>
-                        <button type="button"
-                            onClick={() => navigate(`/events/${eventId}/edit`)}>
+
+                <section className="management-card">
+
+                    <div>
+                        <span className="section-label">
+                            EVENT MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Manage Event
+                        </h2>
+
+                        <p>
+                            Manage the event and marshal
+                            registrations.
+                        </p>
+                    </div>
+
+
+                    <div className="management-actions">
+
+                        <button
+                            className="btn btn-secondary"
+                            onClick={() =>
+                                navigate(
+                                    `/events/${eventId}/edit`
+                                )
+                            }
+                        >
                             Edit Event
                         </button>
-                        <button onClick={() => navigate(`/events/${eventId}/registrations`)}>Manage Registrations</button>
-                    </>
-                )}
-            {event.registrationCount >= event.maxMarshals ? (
-                <button disabled>
-                    Event Full
-                </button>
-            ) : registration && registration.status !== "Cancelled" ? (
-                <p>✓ You are registered for this event</p>
+
+
+                        <button
+                            className="btn btn-primary"
+                            onClick={() =>
+                                navigate(
+                                    `/events/${eventId}/registrations`
+                                )
+                            }
+                        >
+                            Manage Registrations
+                        </button>
+
+
+                        <button
+                            className="btn btn-danger"
+                            onClick={handleDelete}
+                        >
+                            Delete Event
+                        </button>
+
+                    </div>
+
+                </section>
+            )}
+
+
+            {/* Registration */}
+            {!registration ||
+                registration.status === "Cancelled" ? (
+
+                event.registrationCount >= event.maxMarshals ? (
+
+                    <section className="event-full-card">
+
+                        <h2>
+                            Event Full
+                        </h2>
+
+                        <p>
+                            This event has reached the maximum
+                            number of marshals.
+                        </p>
+
+                    </section>
+
+                ) : (
+
+                    <section className="register-card">
+
+                        <div>
+                            <span className="section-label">
+                                JOIN THIS EVENT
+                            </span>
+
+                            <h2>
+                                Ready to participate?
+                            </h2>
+
+                            <p>
+                                Select your available marshal
+                                positions and register for this event.
+                            </p>
+                        </div>
+
+                        <button
+                            className="btn btn-primary"
+                            onClick={() =>
+                                setShowRegistration(true)
+                            }
+                        >
+                            Register for Event
+                        </button>
+
+                    </section>
+                )
+
             ) : (
-                <button onClick={() => setShowRegistration(true)}>
-                    Register for Event
-                </button>
+
+                <section className="already-registered-card">
+
+                    <span className="success-icon">
+                        ✓
+                    </span>
+
+                    <div>
+                        <h3>
+                            You're registered!
+                        </h3>
+
+                        <p>
+                            Your registration is confirmed
+                            for this event.
+                        </p>
+                    </div>
+
+                </section>
             )}
+
+
+            {/* Registration Modal */}
             {showRegistration && (
-                <RegistrationModal event={event} onClose={() => setShowRegistration(false)}
-                    onRegistered={(newRegistration) => { setRegistration(newRegistration) }} />
+                <RegistrationModal
+                    event={event}
+                    onClose={() =>
+                        setShowRegistration(false)
+                    }
+                    onRegistered={(newRegistration) => {
+                        setRegistration(newRegistration)
+                    }}
+                />
             )}
+
         </div>
 
-    )
+    </main>
+)
 }
 
 export default EventDetails

@@ -1,4 +1,5 @@
 import { Link } from "react-router"
+import '../styles/Home.css'
 
 const Home = ({ events, user }) => {
 
