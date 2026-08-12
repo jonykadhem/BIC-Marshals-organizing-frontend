@@ -1,10 +1,12 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import '../styles/Nav.css'
 
 const Nav = (props) => {
+    const navigate = useNavigate()
     const handleSignOut = () => {
         localStorage.removeItem('token')
         props.setUser(null)
+        navigate('/')
     }
     return (
         <nav className="navbar">
