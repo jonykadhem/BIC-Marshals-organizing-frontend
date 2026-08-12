@@ -17,9 +17,10 @@ const Nav = (props) => {
                     {' | '}
                     <Link to="/events" >Events</Link>
                     {' | '}
-                    <Link to="/" onClick={handleSignOut}>Sign Out</Link>
-                    {' | '}
                     <Link to="/events/my-events" >My Events</Link>
+                    {' | '}
+                    <Link to="/" onClick={handleSignOut}>Sign Out</Link>
+                    
 
                 </>
             ) : (

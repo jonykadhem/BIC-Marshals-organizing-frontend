@@ -48,6 +48,23 @@ const EventDetails = (props) => {
         }
     }
 
+    const handleCancelRegistration = async () => {
+        const confirmed = window.confirm(
+            "Are you sure you want to cancel your registration?"
+        )
+        if (!confirmed) return
+
+        try {
+            const updatedRegistration = await registrationService.cancelRegistration(
+                registration._id
+            )
+
+            setRegistration(updatedRegistration)
+        } catch (error) {
+            setmessage(error.message)
+        }
+    }
+
     if (!event) {
         return <p>Loading...</p>
     }
@@ -94,6 +111,12 @@ const EventDetails = (props) => {
                         <strong>Status:</strong>{" "}
                         {registration.status}
                     </p>
+
+                    {registration.status === "Registered" && (
+                        <button onClick={handleCancelRegistration}>
+                            Cancel Registration
+                        </button>
+                    )}
                 </div>
             )}
 
@@ -112,14 +135,12 @@ const EventDetails = (props) => {
                         </button>
                     </>
                 )}
-            {registration ? (
-                <div>
-                    <p>✓ You are registered for this event</p>
-                </div>
-            ) : (
+            {!registration || registration.status === "Cancelled" ? (
                 <button onClick={() => setShowRegistration(true)}>
                     Register for Event
                 </button>
+            ) : (
+                <p>✓ You are registered for this event</p>
             )}
             {showRegistration && (
                 <RegistrationModal event={event} onClose={() => setShowRegistration(false)}

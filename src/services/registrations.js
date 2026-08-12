@@ -49,9 +49,9 @@ const myRegistration = async () =>{
 const cancelRegistration = async (registrationId) => {
     try {
         const res = await fetch(
-            `${BASE_URL}/${registrationId}/cancel`,
+            `${BASE_URL}/events/${registrationId}/cancel`,
             {
-                method: "PATCH",
+                method: "PUT",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
