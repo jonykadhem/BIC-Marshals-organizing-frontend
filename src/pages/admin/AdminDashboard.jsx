@@ -66,6 +66,10 @@ const AdminDashboard = () => {
                     Create Event
                 </Link>
 
+                <Link to="/admin/users">
+                    Manage Users
+                </Link>
+
             </div>
 
         </main>
