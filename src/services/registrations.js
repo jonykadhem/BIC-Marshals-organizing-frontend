@@ -100,7 +100,7 @@ const getMyRegistrationForEvent = async (eventId) => {
 const getEventRegistrations = async (eventId) => {
     try {
         const res = await fetch(
-            `${BASE_URL}/event/${eventId}`,
+            `${BASE_URL}/events/${eventId}/registrations`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -125,7 +125,7 @@ const getEventRegistrations = async (eventId) => {
 
 const assignPost = async (registrationId, assignPost) => {
     try {
-        const res = await fetch(`${BASE_URL}/${registrationId}/assign`, {
+        const res = await fetch(`${BASE_URL}/events/${registrationId}/assign`, {
         method: 'PUT',
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
