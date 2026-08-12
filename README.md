@@ -1,17 +1,43 @@
-# React + Vite
+# BIC-Marshals-Frontend
+A web app for managing motorsport marshal events at Bahrain International Circuit (BIC), including:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- browsing upcoming events
+- registering for marshal positions
+- viewing registered events and assignments
+- creating, editing, and deleting events
+- assigning marshal posts
+- managing users and roles through an admin panel
+![screen shot of the app]()
 
-Currently, two official plugins are available:
+## Getting Started
+### Try The App
+visit [Monthly Outing](https://monthly-outing-1.onrender.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### How To Use
+1. Sign up or sign in to your account.
+2. Browse the suggestions page to see restaurants awaiting a review.
+3. Suggest a new restaurant if you know one worth visiting.
+4. Reviewers can pick a suggested restaurant and submit a rating and comment.
+5. Once reviewed, the restaurant moves to the reviews page with its average star rating.
 
-## React Compiler
+### Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# BIC-Marshals-organizing-frontend
+### Technologies Used
+- HTML
+- CSS
+- JavaScript
+- Node.js
+- Express
+- EJS
+- MongoDB
+- Mongoose
+- Cloudinary
+- Bootstrap
+### Future Enhancements
+- search and filter restaurants by cuisine or area
+- comment replies and discussion threads
+- favorite/bookmark restaurants
+- email notifications when a suggestion gets reviewed
+- pagination for the feed and suggestions pages
+### Credits
+Created by **Sayed Mohsen Kadhem**
