@@ -11,6 +11,7 @@ import CreateEvent from './pages/CreateEvent'
 import EventDetails from './pages/EventDetails'
 import EditEvent from "./pages/EditEvent"
 import MyEvents from './pages/MyEvents'
+import EventRegistrations from './pages/EventRegistrations'
 
 
 
@@ -47,8 +48,11 @@ const App = () => {
         {user ? (
           <>
           {(user.role === "orgnizer" || user.role === "admin") && (
-            
+            <>
             <Route path='/events/new' element={<CreateEvent setEvents={setEvents} handleAddEvent={handleAddEvent}/>} />
+            <Route path='/events/:eventId/registrations' element={<EventRegistrations />} />
+
+            </>
           )}
           
           <Route path='/events' element={<EventList events={events}  />} />

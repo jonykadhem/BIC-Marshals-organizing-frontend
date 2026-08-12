@@ -133,6 +133,7 @@ const EventDetails = (props) => {
                             onClick={() => navigate(`/events/${eventId}/edit`)}>
                             Edit Event
                         </button>
+                        <button onClick={() => navigate(`/events/${eventId}/registrations`)}>Manage Registrations</button>
                     </>
                 )}
             {!registration || registration.status === "Cancelled" ? (
