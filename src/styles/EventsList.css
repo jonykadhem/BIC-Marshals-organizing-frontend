@@ -1,0 +1,310 @@
+/* =========================
+   EVENTS PAGE
+========================= */
+
+.events-page {
+    min-height: 100vh;
+    padding: 60px 0 90px;
+
+    background: #f5f6f8;
+    color: #172033;
+}
+
+.events-page-container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.events-page-header {
+    margin-bottom: 40px;
+}
+
+.events-page-header .section-label {
+    color: #d71920;
+
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.events-page-header h1 {
+    margin: 8px 0 12px;
+
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.1;
+}
+
+.events-page-header p {
+    max-width: 650px;
+    margin: 0;
+
+    color: #687386;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   EVENTS GRID
+========================= */
+
+.events-container {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+/* =========================
+   EVENT CARD
+========================= */
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 310px;
+    padding: 25px;
+
+    border: 1px solid #e2e5ea;
+    border-radius: 14px;
+
+    background: white;
+    color: #172033;
+
+    text-decoration: none;
+
+    box-shadow: 0 6px 20px rgba(20, 30, 50, 0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+
+    border-color: #d71920;
+
+    box-shadow: 0 15px 35px rgba(20, 30, 50, 0.12);
+}
+
+
+/* =========================
+   CARD HEADER
+========================= */
+
+.event-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 15px;
+}
+
+.event-card h2 {
+    margin: 0;
+
+    font-size: 1.3rem;
+    line-height: 1.3;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.event-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 0.65rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.event-status-open {
+    background: #e9f8ed;
+    color: #218838;
+}
+
+.event-status-closed {
+    background: #fcebec;
+    color: #c82333;
+}
+
+.event-status-full {
+    background: #fff3cd;
+    color: #856404;
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.event-description {
+    display: -webkit-box;
+
+    margin: 0 0 25px;
+
+    color: #687386;
+
+    font-size: 0.9rem;
+    line-height: 1.7;
+
+    overflow: hidden;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+
+/* =========================
+   EVENT INFO
+========================= */
+
+.event-card-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: auto;
+}
+
+.event-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 14px;
+
+    border-radius: 8px;
+
+    background: #f7f8fa;
+}
+
+.event-info-item span {
+    color: #8a93a2;
+
+    font-size: 0.65rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+.event-info-item strong {
+    font-size: 0.85rem;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.event-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 20px;
+    padding-top: 18px;
+
+    border-top: 1px solid #e7e9ed;
+
+    color: #d71920;
+
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.event-arrow {
+    font-size: 1.2rem;
+
+    transition: transform 0.2s ease;
+}
+
+.event-card:hover .event-arrow {
+    transform: translateX(5px);
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .events-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .events-page {
+        padding: 40px 0 60px;
+    }
+
+    .events-page-container {
+        width: 94%;
+    }
+
+    .events-container {
+        grid-template-columns: 1fr;
+    }
+
+    .event-card {
+        min-height: 280px;
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 400px) {
+
+    .event-card {
+        padding: 20px;
+    }
+
+    .event-card-header {
+        flex-direction: column;
+    }
+
+    .event-card-header .event-status {
+        align-self: flex-start;
+    }
+
+    .event-card-info {
+        grid-template-columns: 1fr;
+    }
+
+}
