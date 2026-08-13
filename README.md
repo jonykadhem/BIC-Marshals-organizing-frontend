@@ -11,7 +11,7 @@ A web app for managing motorsport marshal events at Bahrain International Circui
 
 ## Getting Started
 ### Try The App
-visit [Monthly Outing](https://monthly-outing-1.onrender.com)
+visit [bic-marshals-events-organizing](https://bic-marshals-events-organizing.netlify.app/)
 
 ### How To Use
 1. Sign up or sign in to your account.
